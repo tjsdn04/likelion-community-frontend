@@ -30,7 +30,8 @@ export const WelcomePage = () => {
           </S.LogoTextWrapper>
         </S.LogoWrapper>
         <S.BtnWrapper>
-          <S.Btn onClick={() => goTo("/main")}>
+          <S.Btn onClick={() => goTo("/adminAtt")}>
+            {/* 테스트 용으로연결해둠 */}
             <img
               src={kakao}
               alt="kakao Logo"

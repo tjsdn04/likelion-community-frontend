@@ -1,12 +1,16 @@
 //헤더
 import styled from "styled-components";
 import back from "@assets/icons/back.svg";
+import { useCustomNavigate } from "@hooks/useCustomNavigate";
 export const Header = ({ title }) => {
+  const { goBack } = useCustomNavigate();
+
   return (
     <Wrapper>
       <Content>
-        <img src={back} alt="back icon" />
-        {title}
+        <img onClick={goBack} src={back} alt="back icon" />
+        <Title>{title}</Title>
+        <div className="fake"></div>
       </Content>
     </Wrapper>
   );
@@ -27,7 +31,24 @@ const Wrapper = styled.div`
 `;
 const Content = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 88.89%;
   margin: 0 auto;
   border: solid 1px red;
+  img {
+    cursor: pointer;
+    width: 9px;
+    height: 18px;
+  }
+  .fake {
+    width: 9px;
+    height: 5px;
+  }
+`;
+const Title = styled.div`
+  display: flex;
+  font-family: ${({ theme }) =>
+    theme.fonts.PretendardSemiBold["font-family"]};
+  font-size: 18px;
 `;

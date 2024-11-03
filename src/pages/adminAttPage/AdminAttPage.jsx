@@ -7,7 +7,6 @@ export const AdminAttPage = () => {
       <Header title="출석" />
       <S.Test>운영진 출석페이지</S.Test>
       <S.Test>운영진 출석페이지</S.Test>
-      <S.Test>운영진 출석페이지</S.Test>
     </S.Wrapper>
   );
 };
