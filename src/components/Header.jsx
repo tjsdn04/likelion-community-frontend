@@ -23,11 +23,11 @@ const Wrapper = styled.div`
   /* left: 0;
   right: 0; */
   display: flex;
-
   width: 100vw;
   height: 7.25vh;
+  z-index: 1000;
   background-color: #f1f3f5; //#F1F3F5
-  border: solid 1px blue;
+  /* border: solid 1px blue; */
 `;
 const Content = styled.div`
   display: flex;
@@ -35,14 +35,15 @@ const Content = styled.div`
   align-items: center;
   width: 88.89%;
   margin: 0 auto;
-  border: solid 1px red;
+  /* border: solid 1px red; */
   img {
     cursor: pointer;
-    width: 9px;
-    height: 18px;
+    width: 12px;
+    height: 24px;
   }
   .fake {
-    width: 9px;
+    //중앙맞추기용 가짜 div
+    width: 12px;
     height: 5px;
   }
 `;
