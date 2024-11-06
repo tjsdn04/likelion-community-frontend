@@ -32,17 +32,10 @@ export const WelcomePage = () => {
         <S.BtnWrapper>
           <S.Btn onClick={() => goTo("/adminAtt")}>
             {/* 테스트 용으로연결해둠 */}
-            <img
-              src={kakao}
-              alt="kakao Logo"
-              style={{ width: "auto", height: "4vh" }}
-            />
+            <img src={kakao} alt="kakao Logo" style={{ width: "auto", height: "4vh" }} />
             <span className="kakao">카카오 로그인</span>
           </S.Btn>
-          <S.Btn
-            onClick={() => goTo("/main")}
-            color="rgba(255, 255, 255, 0.80)"
-          >
+          <S.Btn onClick={() => goTo("/login")} color="rgba(255, 255, 255, 0.80)">
             로그인
           </S.Btn>
         </S.BtnWrapper>

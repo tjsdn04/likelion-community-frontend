@@ -5,6 +5,7 @@ import { WelcomePage } from "@pages/loginPage/WelcomePage";
 import { AdminAttPage } from "@pages/adminAttPage/AdminAttPage";
 import { AdminAttRegisterPage } from "@pages/adminAttPage/AdminAttRegisterPage";
 import { AdminAttManagePage } from "@pages/adminAttPage/AdminAttManagePage";
+import { LoginPage } from "@pages/loginPage/LoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: "adminAtt", element: <AdminAttPage /> },
       { path: "adminAttRegister", element: <AdminAttRegisterPage /> },
       { path: "adminAttManage", element: <AdminAttManagePage /> },
+      { path: "login", element: <LoginPage /> },
     ],
   },
 ]);
