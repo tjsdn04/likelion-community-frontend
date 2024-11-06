@@ -51,5 +51,5 @@ const Title = styled.div`
   display: flex;
   font-family: ${({ theme }) =>
     theme.fonts.PretendardSemiBold["font-family"]};
-  font-size: 18px;
+  font-size: 20px;
 `;
