@@ -41,7 +41,7 @@ export const WelcomePage = () => {
         </S.BtnWrapper>
         <S.SignUp>
           <span>아직 회원이 아니신가요?</span>
-          <span className="underline" onClick={() => goTo("/main")}>
+          <span className="underline" onClick={() => goTo("/signup")}>
             회원가입
           </span>
         </S.SignUp>

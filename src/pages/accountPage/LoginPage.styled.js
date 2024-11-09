@@ -78,26 +78,7 @@ export const ErrorMessage = styled.p`
   text-align: center;
 `;
 
-// 로그인 버튼
-export const BottomButton = styled.button`
-  width: 100%;
-  height: 55px;
-  border: none;
-  font-family: ${({ theme }) => theme.fonts.PretendardSemiBold["font-family"]};
-  font-size: 16px;
-  background-color: #ff7710;
-  border-radius: 20px;
-  color: #000000;
-  margin-top: 40px;
-  margin-bottom: 16px;
-  cursor: pointer; /*커서가 올라가면 포인터로 바뀌게*/
-
-  &:disabled {
-    background-color: #d9d9d9;
-  }
-`;
-
-export const SignUp = styled.div`
+export const Signup = styled.div`
   text-align: center;
   color: #a9a9a9;
   font-family: ${({ theme }) => theme.fonts.PretendardMedium["font-family"]};

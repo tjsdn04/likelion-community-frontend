@@ -1,10 +1,12 @@
 // 기본 로그인 페이지
 import * as S from "./LoginPage.styled";
 import { Header } from "@components/Header";
-import id_img from "@assets/icons/id.svg";
-import pw_img from "@assets/icons/pw.svg";
-import invisible from "@assets/icons/eyeClosedToggle.svg";
-import visible from "@assets/icons/eyeOpenedToggle.svg";
+import { Button } from "@components/account/Button";
+import { InputBox } from "@components/account/InputBox";
+import idIcon from "@assets/icons/id.svg";
+import pwIcon from "@assets/icons/pw.svg";
+import invisibleIcon from "@assets/icons/eyeClosedToggle.svg";
+import visibleIcon from "@assets/icons/eyeOpenedToggle.svg";
 import { useEffect, useState } from "react";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
 
@@ -55,36 +57,26 @@ export const LoginPage = () => {
     <S.Wrapper>
       <Header title="로그인" />
       <S.ContentWrap>
-        <S.InputWrapper>
-          <S.InputTitle>아이디</S.InputTitle>
-          <S.InputWrap>
-            <img src={id_img} alt="id Logo" style={{ width: "20px", height: "auto" }} />
-            <S.Input placeholder="아이디를 입력해 주세요" value={id} onChange={handleId} />
-          </S.InputWrap>
-        </S.InputWrapper>
-
-        <S.InputWrapper>
-          <S.InputTitle>비밀번호</S.InputTitle>
-          <S.InputWrap>
-            <img src={pw_img} alt="pw Logo" style={{ width: "20px", height: "auto" }} />
-            <S.Input placeholder="비밀번호를 입력해 주세요" type={isPasswordVisible ? "text" : "password"} value={pw} onChange={handlePw} />
-            <S.Toggle onClick={handlePasswordVisibility}>
-              <img src={isPasswordVisible ? visible : invisible} alt="visibility" style={{ width: "20px", height: "auto" }} />
-            </S.Toggle>
-          </S.InputWrap>
-        </S.InputWrapper>
+        <InputBox title="아이디" placeholder="아이디를 입력해 주세요" icon={idIcon} value={id} onChange={handleId} />
+        <InputBox
+          title="비밀번호"
+          placeholder="비밀번호를 입력해 주세요"
+          icon={pwIcon}
+          type={isPasswordVisible ? "text" : "password"}
+          value={pw}
+          onChange={handlePw}
+          toggleIcon={isPasswordVisible ? visibleIcon : invisibleIcon}
+          onToggleClick={handlePasswordVisibility}
+        />
 
         {showErrorMessage && <S.ErrorMessage>아이디 또는 비밀번호가 잘못되었습니다.</S.ErrorMessage>}
-        <S.BottomButton onClick={onClickConfirmButton} disabled={notAllow}>
-          로그인
-        </S.BottomButton>
-        <S.SignUp>
+        <Button onClick={onClickConfirmButton} disabled={notAllow} btnName="로그인" />
+        <S.Signup>
           <span className="text">아직 회원이 아니신가요?</span>
-          <span className="underline" onClick={() => goTo("/main")}>
-            {/* 임시 */}
+          <span className="underline" onClick={() => goTo("/signup")}>
             회원가입
           </span>
-        </S.SignUp>
+        </S.Signup>
       </S.ContentWrap>
     </S.Wrapper>
   );
