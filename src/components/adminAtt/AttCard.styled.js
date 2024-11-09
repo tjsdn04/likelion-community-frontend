@@ -11,10 +11,10 @@ export const Wrapper = styled.div`
   /* aspect-ratio: 320 / 110; */
   justify-content: center;
   align-items: center;
-  background-color: ${({ isOpen }) =>
-    isOpen ? "#FFF3EA" : "#FFFFFF"}; //1일때가 진행중
-  border: ${({ isOpen, theme }) =>
-    isOpen ? `solid 1.5px ${theme.colors.mainColor}` : "none"};
+  background-color: ${({ $isOpen }) =>
+    $isOpen ? "#FFF3EA" : "#FFFFFF"}; //1일때가 진행중
+  border: ${({ $isOpen, theme }) =>
+    $isOpen ? `solid 1.5px ${theme.colors.mainColor}` : "none"};
   border-radius: 8px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
 `;
