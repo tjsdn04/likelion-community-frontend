@@ -7,6 +7,8 @@ import { AdminAttPage } from "@pages/adminAttPage/AdminAttPage";
 import { AdminAttRegisterPage } from "@pages/adminAttPage/AdminAttRegisterPage";
 import { AdminAttManagePage } from "@pages/adminAttPage/AdminAttManagePage";
 import { LionAttNum } from "@pages/lionAttPage/LionAttNum";
+import { LionAttInfoPage } from "@pages/lionAttPage/LionAttInfoPage";
+
 import { LoginPage } from "@pages/loginPage/LoginPage";
 
 export const router = createBrowserRouter([
@@ -21,6 +23,7 @@ export const router = createBrowserRouter([
       { path: "adminAttRegister", element: <AdminAttRegisterPage /> },
       { path: "adminAttManage", element: <AdminAttManagePage /> },
       { path: "lionAttNum", element: <LionAttNum /> },
+      { path: "lionAttInfo", element: <LionAttInfoPage /> },
       { path: "login", element: <LoginPage /> },
     ],
   },
