@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 5.56vw;
     max-width: 540px;
     justify-content: center;
     align-items: center;
@@ -13,8 +12,10 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
-    width: 88.89%;
     margin: 0 auto;
+    width: 88.89%;
+    height: calc(100vh - 7.25vh - 96px);
+    overflow-y: auto;
 `
 
 export const Session = styled.div`
@@ -43,6 +44,23 @@ export const Mid = styled.div`
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
 `
 
+export const Date = styled.div`
+    color: #767676;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-family: ${({ theme }) =>
+    theme.fonts.PretendardSemiBold["font-family"]};
+    display: flex;
+    align-items: center;
+    line-height: 140%;
+    letter-spacing: -0.35px;
+`
+export const DateImg = styled.img`
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+`
+
 export const Location = styled.div`
     color: #767676;
     font-size: 14px;
@@ -51,23 +69,13 @@ export const Location = styled.div`
     margin-bottom: 5px;
     font-family: ${({ theme }) =>
     theme.fonts.PretendardSemiBold["font-family"]};
+    display: flex;
+    align-items: center;
+    line-height: 140%;
+    letter-spacing: -0.35px;
 `
 
 export const LocationImg = styled.img`
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
-`
-
-export const Date = styled.div`
-    color: #767676;
-    font-size: 14px;
-    margin-bottom: 5px;
-    font-family: ${({ theme }) =>
-    theme.fonts.PretendardSemiBold["font-family"]};
-    display: flex;
-`
-export const DateImg = styled.img`
     width: 16px;
     height: 16px;
     margin-right: 4px;
@@ -79,12 +87,16 @@ export const Title = styled.div`
     margin-bottom: 9px;
     font-family: ${({ theme }) =>
     theme.fonts.PretendardSemiBold["font-family"]};
+    line-height: 140%;
+    letter-spacing: -0.4px;
 `
 
 export const Detail = styled.div`
     font-size: 14px;
-    color: #999;
+    color: #000;
     margin-bottom: 14px;
+    line-height: 140%;
+    letter-spacing: -0.35px;
 `
 
 export const FileDiv = styled.div`
@@ -101,7 +113,6 @@ export const FileName = styled.div`
     color: #999;
     font-family: ${({ theme }) =>
     theme.fonts.PretendardSemiBold["font-family"]};
-    
 `
 
 export const State = styled.div`
@@ -130,8 +141,9 @@ export const Attend = styled.div`
     justify-content: center;
     align-items: center;
     gap: 7px;
-    padding: 30px;
+    width: 90px;
     border-radius: 32px;
+    aspect-ratio: 1 / 1;
 `
 
 export const Late = styled.div`
@@ -140,9 +152,9 @@ export const Late = styled.div`
     justify-content: center;
     align-items: center;
     gap: 7px;
-    padding: 20px;
+    width: 90px;
     border-radius: 32px;
-    
+    aspect-ratio: 1 / 1;
 `
 export const Absent = styled.div`
     display: flex;
@@ -150,9 +162,9 @@ export const Absent = styled.div`
     justify-content: center;
     align-items: center;
     gap: 7px;
-    padding: 20px;
+    width: 90px;
     border-radius: 32px;
-    
+    aspect-ratio: 1 / 1;
 `
 
 export const Out = styled.div`
@@ -161,15 +173,21 @@ export const Out = styled.div`
     background: #FFF;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
     font-size: 16px;
-    margin-bottom: 35px;
+    font-family: ${({ theme }) =>
+    theme.fonts.PretendardSemiBold["font-family"]};
+    line-height: 140%;
+    letter-spacing: -0.4px;
 `
 
 export const Btn = styled.button`
     font-size: 16px;
     padding: 17px 0;
-    width: 100%;
     border-radius: 32px;
     color: #fff;
     background-color: ${({ isActive }) => (isActive ? '#FF7710' : '#D9D9D9')};
     cursor: ${({ isActive }) => (isActive ? 'pointer' : 'default')};
+    position: fixed;
+    bottom: 30px;
+    width: 88.89%;
+    max-width: 480px;
 `

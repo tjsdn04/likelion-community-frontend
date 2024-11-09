@@ -60,7 +60,7 @@ export const LionAttInfoPage = () => {
                         <S.Number>1회</S.Number>
                     </S.Absent>
                 </S.State>
-                <S.Out>벌점이 15점 이상이거나 무단결석이 3회 이상일 경우 제명됩니다.</S.Out>
+                <S.Out>벌점이 15점 이상이거나 무단결석이 3회 이상일 경우 제명됩니다</S.Out>
                 <S.Btn isActive={btn}>출석하러 가기</S.Btn>
             </S.Content>
         </S.Wrapper>
