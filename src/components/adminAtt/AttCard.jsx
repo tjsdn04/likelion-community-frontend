@@ -6,7 +6,7 @@ import dateIcon from "@assets/icons/dateIcon.svg";
 import pingIcon from "@assets/icons/pingIcon.svg";
 export function AttCard({ isOpen }) {
   return (
-    <S.Wrapper isOpen={isOpen}>
+    <S.Wrapper $isOpen={isOpen}>
       <S.Content>
         <S.TextContent>
           <div className="InfoDisplay">

@@ -2,18 +2,30 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import dropdown from "@assets/icons/dropdown.svg";
 
-export const Dropdown = (props) => {
-  const list = props.props.data;
+export const Dropdown = ({ props, onChange }) => {
+  const list = props.data;
   const [currentValue, setCurrentValue] = useState(list[0]);
   const [showOptions, setShowOptions] = useState(false);
   const dropdownRef = useRef(null); // 드롭다운을 감싸는 요소에 참조를 설정
 
+  // 기본값을 부모 컴포넌트로 전달 (한 번만)
+  useEffect(() => {
+    if (onChange) {
+      onChange(list[0]); // 부모 컴포넌트에 기본값 전달
+    }
+  }, []); // 빈 의존성 배열을 사용해 한 번만 실행되도록 설정
+
   const handleOnChangeSelectValue = (e) => {
     e.stopPropagation(); // 이벤트 전파 방지
-    setCurrentValue(e.target.getAttribute("value"));
+    const value = e.target.getAttribute("value");
+    setCurrentValue(value);
     setShowOptions(false); // 선택 후 드롭다운 닫기
-  };
 
+    // 부모 컴포넌트로 값 전달
+    if (onChange) {
+      onChange(value);
+    }
+  };
   // 바깥 클릭 감지
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -68,6 +80,7 @@ const SelectBox = styled.div`
   background-color: #ffffff;
   border: 1px solid #cccccc;
   cursor: pointer;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
 `;
 
 const Label = styled.label`
@@ -78,11 +91,13 @@ const Label = styled.label`
   font-size: 14px;
   color: #999999;
 `;
+
 const DropText = styled.div`
   display: flex;
-
   font-family: ${({ theme }) =>
     theme.fonts.PretendardSemiBold["font-family"]};
+
+  color: "#999999";
 `;
 
 // 아이콘 자리 표시용 컴포넌트
