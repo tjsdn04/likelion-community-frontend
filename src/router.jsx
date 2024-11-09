@@ -13,8 +13,6 @@ import { KakaoSignupPage } from "@pages/accountPage/KakaoSignupPage";
 import { VerificationPage } from "@pages/accountPage/VerificationPage";
 import { Loading } from "@components/account/Loading";
 import { LionAttInfoPage } from "@pages/lionAttPage/LionAttInfoPage";
-
-import { LoginPage } from "@pages/loginPage/LoginPage";
 import { ChatListPage } from "@pages/ChatPage/ChatListPage";
 import { ChatPage } from "@pages/ChatPage/ChatPage";
 
