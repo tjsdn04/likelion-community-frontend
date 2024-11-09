@@ -1,4 +1,4 @@
-// 회원가입 - 인증 페이지
+// 회원가입 인증 페이지
 
 import * as S from "./VerificationPage.styled";
 import React, { useState, useEffect } from "react";
