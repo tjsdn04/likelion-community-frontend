@@ -17,7 +17,7 @@ export const Footer = () => {
     const path = {
         '/': 1,
         '/': 2,
-        '/': 3,
+        '/chatList': 3,
         '/school': 4,
     };
 
@@ -68,7 +68,7 @@ export const Footer = () => {
             </Link>
         </Button>
         <Button>
-            <Link to="/">
+            <Link to="/chatList">
             <Icon
                 src={clickedIndex === 3 ? chatClick : chat}
                 alt="chat icon"

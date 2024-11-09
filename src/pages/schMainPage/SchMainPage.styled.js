@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
-    padding: 0 5.56vw;
     max-width: 540px;
+    width: 90%;
+    margin: 0 auto;
 `;
 
 export const Buttons = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 55px 0 22px 0;
+
 `;
 
 export const Button = styled.div`
@@ -32,7 +34,9 @@ export const Button = styled.div`
 `;
 
 export const Title = styled.p`
-
+    font-size: 14px;
+    font-family: ${({ theme }) =>
+    theme.fonts.PretendardMedium["font-family"]};
 `;
 
 export const Boards = styled.div`
@@ -40,4 +44,5 @@ export const Boards = styled.div`
     flex-direction: column;
     gap: 22px;
     margin-bottom: 100px;
+
 `;

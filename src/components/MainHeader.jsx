@@ -29,11 +29,10 @@ const Wrapper = styled.div`
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0 5.56vw;
 `;
 
 const Content = styled.div`
-    width: 100%;
+    width: 88.89%;
     height: 100%;
     margin: 0 auto;
     display: flex;
