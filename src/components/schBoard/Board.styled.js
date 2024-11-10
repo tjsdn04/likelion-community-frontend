@@ -21,6 +21,7 @@ export const Title = styled.h2`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    max-width: 100%;
 `
 
 export const Context = styled.p`
