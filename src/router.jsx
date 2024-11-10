@@ -17,6 +17,7 @@ import { ChatListPage } from "@pages/chatPage/ChatListPage";
 import { ChatPage } from "@pages/chatPage/ChatPage";
 import { SchAllBoardPage } from "@pages/schBoardPage/SchAllBoardPage";
 import { SchQnaBoardPage } from "@pages/schBoardPage/schQnaBoardPage";
+import { CommuMainPage } from './pages/commuPage/CommuMainPage';
 
 
 export const router = createBrowserRouter([
@@ -41,6 +42,7 @@ export const router = createBrowserRouter([
       { path: "chat", element: <ChatPage /> },
       { path: "schAllBoard", element: <SchAllBoardPage /> },
       { path: "schQnaBoard", element: <SchQnaBoardPage /> },
+      { path: "commuMain", element: <CommuMainPage /> },
     ],
   },
 ]);
