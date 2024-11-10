@@ -10,10 +10,17 @@ dotenv.config();
 
 export default defineConfig({
   server: {
-    https: {
-      key: fs.readFileSync(process.env.PEM_KEY_PATH),
-      cert: fs.readFileSync(process.env.PEM_CERT_PATH),
-    },
+    https:
+      process.env.NODE_ENV === "development" // 개발 환경에서만 HTTPS 사용
+        ? {
+            key: fs.readFileSync(
+              process.env.PEM_KEY_PATH || "localhost+2-key.pem"
+            ),
+            cert: fs.readFileSync(
+              process.env.PEM_CERT_PATH || "localhost+2.pem"
+            ),
+          }
+        : undefined, // 배포 환경에서는 HTTPS 설정 생략
   },
   plugins: [react()],
   resolve: {
