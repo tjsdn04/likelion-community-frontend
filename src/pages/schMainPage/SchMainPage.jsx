@@ -42,8 +42,8 @@ export const SchMainPage = () => {
           </S.Button>
         </S.Buttons>
         <S.Boards>
-          <Link to='/schAllBoard'><Board title="전체게시판" posts={posts1}/></Link>
-          <Link to='/schQnaBoard'><Board title="질문게시판" posts={posts2} /></Link>
+          <Board title="전체게시판" posts={posts1} link='/schAllBoard' />
+          <Board title="질문게시판" posts={posts2} link='/schQnaBoard' />
         </S.Boards>
         <Footer/>
     </S.Wrapper>
