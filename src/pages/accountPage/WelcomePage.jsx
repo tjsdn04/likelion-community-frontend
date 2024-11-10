@@ -4,6 +4,7 @@ import welcomeLogo from "@assets/icons/welcomeLogo.svg";
 import kakao from "@assets/icons/kakao.svg";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
 import { useEffect } from "react";
+import axiosInstance from "@apis/axiosInstance";
 
 export const WelcomePage = () => {
   //useCustomNavigate훅을 이용해서 버튼클릭시 이동
@@ -19,6 +20,31 @@ export const WelcomePage = () => {
     };
   }, []);
 
+  // const handleKakaoLogin = async () => {
+  //   try {
+  //     // 카카오 로그인 URL을 백엔드에서 가져오기
+  //     const response = await axiosInstance.get(
+  //       "/signup/login/kakao/"
+  //       // { withCredentials: true }
+  //     );
+  //     const kakaoLoginUrl = response.data.url; // 명세서에 있는 "url" 속성 사용
+  //     console.log("Kakao Login URL:", kakaoLoginUrl); // URL 출력
+
+  //     // 카카오 로그인 URL로 리다이렉트
+  //     window.location.href = kakaoLoginUrl;
+  //   } catch (error) {
+  //     console.error(
+  //       "Error during Kakao login:",
+  //       error.response?.data || error.message
+  //     );
+  //   }
+  // };
+  const handleKakaoLogin = () => {
+    // 백엔드의 카카오 로그인 URL로 직접 이동
+    window.location.href = `${
+      import.meta.env.VITE_BASE_URL
+    }/signup/login/kakao/`;
+  };
   return (
     <S.Wrapper>
       <S.Content>
@@ -30,12 +56,19 @@ export const WelcomePage = () => {
           </S.LogoTextWrapper>
         </S.LogoWrapper>
         <S.BtnWrapper>
-          <S.Btn onClick={() => goTo("/adminAtt")}>
-            {/* 테스트 용으로연결해둠 */}
-            <img src={kakao} alt="kakao Logo" style={{ width: "auto", height: "4vh" }} />
+          <S.Btn onClick={handleKakaoLogin}>
+            {/* onClick={() => goTo("/adminAtt")}테스트 용으로연결해둠 */}
+            <img
+              src={kakao}
+              alt="kakao Logo"
+              style={{ width: "auto", height: "4vh" }}
+            />
             <span className="kakao">카카오 로그인</span>
           </S.Btn>
-          <S.Btn onClick={() => goTo("/login")} color="rgba(255, 255, 255, 0.80)">
+          <S.Btn
+            onClick={() => goTo("/login")}
+            color="rgba(255, 255, 255, 0.80)"
+          >
             로그인
           </S.Btn>
         </S.BtnWrapper>
