@@ -7,18 +7,20 @@ import exampleImg from '@assets/icons/exampleImg.svg'
 export const Board = ({title,context}) => {
 
     const BoardInfo = [
-        {time: 6, name: '익명',comment:3, recommend: 10, img: exampleImg}
+        {time: 6, name: '익명',comment:3, recommend: 10, img: ''}
     ]
 
     return (
         <S.Wrapper>
             <S.Left>
-                <S.Title>
-                    {title}
-                </S.Title>
-                <S.Context>
-                    {context}
-                </S.Context>
+                {/* <S.Top> */}
+                    <S.Title>
+                        {title}
+                    </S.Title>
+                    <S.Context>
+                        {context}
+                    </S.Context>                    
+                {/* </S.Top> */}
                 <BoardInfoComponent 
                     time={BoardInfo[0].time}
                     name={BoardInfo[0].name}

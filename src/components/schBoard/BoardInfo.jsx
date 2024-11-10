@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const BoardInfo = ({time, name, comment, recommend}) => {
     return (
         <Wrapper>
-            { time }분 전 | { name } | 댓글 { comment } | 추천 { recommend }
+            { time }분 전 | { name } | 댓글 { comment } | 추천 
+            <Color>{ recommend }</Color>
         </Wrapper>
 
     )
@@ -13,6 +14,9 @@ const Wrapper = styled.div`
     display: flex;
     color: #767676;
     font-size: 10px;
+`
 
-
+const Color = styled.p`
+    color: #FF7D2C;
+    padding-left: 2px;
 `

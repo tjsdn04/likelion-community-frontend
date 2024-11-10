@@ -7,19 +7,27 @@ export const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 10px 15px;
+    /* height: 95px; */
 `
 
 export const Left = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    max-width: calc(100% - 70px);
+    justify-content: space-between;
 `
+
+// export const Top = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+// `
 
 export const Title = styled.h2`
     font-size: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 100%;
 `
