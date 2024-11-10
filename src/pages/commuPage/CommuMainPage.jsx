@@ -11,7 +11,7 @@ export const CommuMainPage = () => {
             <S.Content>
                 <S.Title>게시판</S.Title>
                 <S.Posts>
-                <S.Post>
+                    <S.Post>
                         <S.Top>
                             <S.Name>💬 자유 게시판</S.Name>
                             <Link to='/defaultBoard'>
