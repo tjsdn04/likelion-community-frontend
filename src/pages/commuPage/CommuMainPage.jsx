@@ -14,7 +14,7 @@ export const CommuMainPage = () => {
                 <S.Post>
                         <S.Top>
                             <S.Name>💬 자유 게시판</S.Name>
-                            <Link to='/'>
+                            <Link to='/defaultBoard'>
                                 <S.More>더보기</S.More>
                             </Link>
                         </S.Top>
@@ -23,7 +23,7 @@ export const CommuMainPage = () => {
                     <S.Post>
                         <S.Top>
                             <S.Name>🚥 프론트엔드 게시판</S.Name>
-                            <Link to='/'>
+                            <Link to='/feBoard'>
                                 <S.More>더보기</S.More>
                             </Link>
                         </S.Top>
@@ -32,7 +32,7 @@ export const CommuMainPage = () => {
                     <S.Post>
                         <S.Top>
                             <S.Name>🚥 백엔드 게시판</S.Name>
-                            <Link to='/'>
+                            <Link to='/beBoard'>
                                 <S.More>더보기</S.More>
                             </Link>
                         </S.Top>
@@ -41,7 +41,7 @@ export const CommuMainPage = () => {
                     <S.Post>
                         <S.Top>
                             <S.Name>🚥 기획/디자인 게시판</S.Name>
-                            <Link to='/'>
+                            <Link to='/pmBoard'>
                                 <S.More>더보기</S.More>
                             </Link>
                         </S.Top>
@@ -50,7 +50,7 @@ export const CommuMainPage = () => {
                     <S.Post>
                         <S.Top>
                             <S.Name>🦁 아기사자 게시판</S.Name>
-                            <Link to='/'>
+                            <Link to='/lionBoard'>
                                 <S.More>더보기</S.More>
                             </Link>
                         </S.Top>
@@ -59,7 +59,7 @@ export const CommuMainPage = () => {
                     <S.Post>
                         <S.Top>
                             <S.Name>📢 이벤트/공지 게시판</S.Name>
-                            <Link to='/'>
+                            <Link to='/notiBoard'>
                                 <S.More>더보기</S.More>
                             </Link>
                         </S.Top>
@@ -68,7 +68,7 @@ export const CommuMainPage = () => {
                     <S.Post>
                         <S.Top>
                             <S.Name>✋ 참여 게시판</S.Name>
-                            <Link to='/'>
+                            <Link to='/joinBoard'>
                                 <S.More>더보기</S.More>
                             </Link>
                         </S.Top>

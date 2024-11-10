@@ -4,14 +4,14 @@ import * as S from './Board.styled'
 import { BoardInfo as BoardInfoComponent } from './BoardInfo'
 import exampleImg from '@assets/icons/exampleImg.svg'
 
-export const Board = ({title,context}) => {
+export const Board = ({title,context,pin}) => {
 
     const BoardInfo = [
         {time: 6, name: '익명',comment:3, recommend: 10, img: ''}
     ]
 
     return (
-        <S.Wrapper>
+        <S.Wrapper pin={pin}>
             <S.Left>
                 {/* <S.Top> */}
                     <S.Title>

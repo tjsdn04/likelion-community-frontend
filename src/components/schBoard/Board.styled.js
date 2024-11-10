@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     border-radius: 8px;
-    background: #FFF;
+    background-color: ${({ pin }) => (pin ? '#FFEFCB' : 'white')} !important;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
     display: flex;
     justify-content: space-between;

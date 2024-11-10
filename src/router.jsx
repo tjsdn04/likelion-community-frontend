@@ -17,7 +17,14 @@ import { ChatListPage } from "@pages/chatPage/ChatListPage";
 import { ChatPage } from "@pages/chatPage/ChatPage";
 import { SchAllBoardPage } from "@pages/schBoardPage/SchAllBoardPage";
 import { SchQnaBoardPage } from "@pages/schBoardPage/schQnaBoardPage";
-import { CommuMainPage } from './pages/commuPage/CommuMainPage';
+import { CommuMainPage } from '@pages/commuPage/CommuMainPage';
+import { DefaultBoardPage } from '@pages/boardPage/DefaultBoardPage';
+import { BeBoardPage } from '@pages/boardPage/BeBoardPage';
+import { FeBoardPage } from '@pages/boardPage/FeBoardPage';
+import { PmBoardPage } from '@pages/boardPage/PmBoardPage';
+import { LionBoardPage } from '@pages/boardPage/LionBoardPage';
+import { NotiBoardPage } from '@pages/boardPage/NotiBoardPage';
+import { JoinBoardPage } from '@pages/boardPage/JoinBoardPage';
 
 
 export const router = createBrowserRouter([
@@ -43,6 +50,13 @@ export const router = createBrowserRouter([
       { path: "schAllBoard", element: <SchAllBoardPage /> },
       { path: "schQnaBoard", element: <SchQnaBoardPage /> },
       { path: "commuMain", element: <CommuMainPage /> },
+      { path: "defaultBoard", element: <DefaultBoardPage /> },
+      { path: "feBoard", element: <FeBoardPage /> },
+      { path: "beBoard", element: <BeBoardPage /> },
+      { path: "pmBoard", element: <PmBoardPage /> },
+      { path: "lionBoard", element: <LionBoardPage /> },
+      { path: "notiBoard", element: <NotiBoardPage /> },
+      { path: "joinBoard", element: <JoinBoardPage /> },
     ],
   },
 ]);
