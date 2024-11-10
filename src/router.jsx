@@ -15,6 +15,9 @@ import { Loading } from "@components/account/Loading";
 import { LionAttInfoPage } from "@pages/lionAttPage/LionAttInfoPage";
 import { ChatListPage } from "@pages/chatPage/ChatListPage";
 import { ChatPage } from "@pages/chatPage/ChatPage";
+import { SchAllBoardPage } from "@pages/schBoardPage/SchAllBoardPage";
+import { SchQnaBoardPage } from "@pages/schBoardPage/schQnaBoardPage";
+
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +39,8 @@ export const router = createBrowserRouter([
       { path: "loading", element: <Loading /> },
       { path: "chatList", element: <ChatListPage /> },
       { path: "chat", element: <ChatPage /> },
+      { path: "schAllBoard", element: <SchAllBoardPage /> },
+      { path: "schQnaBoard", element: <SchQnaBoardPage /> },
     ],
   },
 ]);
