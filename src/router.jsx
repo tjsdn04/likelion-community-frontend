@@ -15,6 +15,15 @@ import { Loading } from "@components/account/Loading";
 import { LionAttInfoPage } from "@pages/lionAttPage/LionAttInfoPage";
 import { ChatListPage } from "@pages/ChatPage/ChatListPage";
 import { ChatPage } from "@pages/ChatPage/ChatPage";
+import { BePostingPage } from "@pages/mainPostingPage/BePostingPage ";
+import { DefaultPostingPage } from "@pages/mainPostingPage/DefaultPostingPage";
+import { FePostingPage } from "@pages/mainPostingPage/FePostingPage";
+import { JoinPostingPage } from "@pages/mainPostingPage/JoinPostingPage";
+import { LionPostingPage } from "@pages/mainPostingPage/LionPostingPage";
+import { NotiPostingPage } from "@pages/mainPostingPage/NotiPostingPage";
+import { PmPostingPage } from "@pages/mainPostingPage/PmPostingPage";
+import { QnAPostingPage } from "@pages/schPostingPage/QnAPostinPage";
+import { SchDefaultPostingPage } from "@pages/schPostingPage/SchDefaultPostingPage";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +45,15 @@ export const router = createBrowserRouter([
       { path: "loading", element: <Loading /> },
       { path: "chatList", element: <ChatListPage /> },
       { path: "chat", element: <ChatPage /> },
+      { path: "bePostingPage", element: <BePostingPage /> },
+      { path: "defaultPostingPage", element: <DefaultPostingPage /> },
+      { path: "fePostingPage", element: <FePostingPage /> },
+      { path: "joinPostingPage", element: <JoinPostingPage /> },
+      { path: "lionPostingPage", element: <LionPostingPage /> },
+      { path: "notiPostingPage", element: <NotiPostingPage /> },
+      { path: "pmPostingPage", element: <PmPostingPage /> },
+      { path: "qnaPostingPage", element: <QnAPostingPage /> },
+      { path: "schDefaultPostingPage", element: <SchDefaultPostingPage /> },
     ],
   },
 ]);
