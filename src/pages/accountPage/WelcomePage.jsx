@@ -25,9 +25,8 @@ export const WelcomePage = () => {
   //     // 카카오 로그인 URL을 백엔드에서 가져오기
   //     const response = await axiosInstance.get(
   //       "/signup/login/kakao/"
-  //       // { withCredentials: true }
   //     );
-  //     const kakaoLoginUrl = response.data.url; // 명세서에 있는 "url" 속성 사용
+  //     const kakaoLoginUrl = response.data.kakao_login_url; // 명세서에 있는 "kakao_login_url" 속성 사용
   //     console.log("Kakao Login URL:", kakaoLoginUrl); // URL 출력
 
   //     // 카카오 로그인 URL로 리다이렉트
