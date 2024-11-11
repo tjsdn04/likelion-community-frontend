@@ -34,6 +34,7 @@ import { PmBoardPage } from "@pages/boardPage/PmBoardPage";
 import { LionBoardPage } from "@pages/boardPage/LionBoardPage";
 import { NotiBoardPage } from "@pages/boardPage/NotiBoardPage";
 import { JoinBoardPage } from "@pages/boardPage/JoinBoardPage";
+import { MyPage } from "@pages/myPage/MyPage";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,7 @@ export const router = createBrowserRouter([
       { path: "lionBoard", element: <LionBoardPage /> },
       { path: "notiBoard", element: <NotiBoardPage /> },
       { path: "joinBoard", element: <JoinBoardPage /> },
+      { path: "myPage", element: <MyPage /> },
     ],
   },
 ]);
