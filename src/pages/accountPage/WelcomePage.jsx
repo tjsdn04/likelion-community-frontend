@@ -38,12 +38,25 @@ export const WelcomePage = () => {
   //     );
   //   }
   // };
+
   const handleKakaoLogin = () => {
     // 백엔드의 카카오 로그인 URL로 직접 이동
     window.location.href = `${
       import.meta.env.VITE_BASE_URL
     }/signup/login/kakao/`;
   };
+  // const handleKakaoLogin = async () => {
+  //   try {
+  //     // 백엔드에 GET 요청을 보내서 리디렉션을 유도
+  //     await axiosInstance.get("/signup/login/kakao/");
+  //     // 요청이 성공하면, 백엔드에서 302 Redirect 응답으로 카카오 로그인 페이지로 리디렉션 처리
+  //   } catch (error) {
+  //     console.error(
+  //       "Error during Kakao login:",
+  //       error.response?.data || error.message
+  //     );
+  //   }
+  // };
   return (
     <S.Wrapper>
       <S.Content>

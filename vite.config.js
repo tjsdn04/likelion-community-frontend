@@ -9,10 +9,16 @@ dotenv.config();
 
 export default defineConfig({
   server: {
-    https: {
-      key: fs.readFileSync(process.env.PEM_KEY_PATH || "localhost+2-key.pem"),
-      cert: fs.readFileSync(process.env.PEM_CERT_PATH || "localhost+2.pem"),
-    },
+    https: process.env.VERCEL
+      ? false // Vercel 환경에서는 HTTPS 설정을 제외
+      : {
+          key: fs.readFileSync(
+            process.env.PEM_KEY_PATH || "localhost+2-key.pem"
+          ),
+          cert: fs.readFileSync(
+            process.env.PEM_CERT_PATH || "localhost+2.pem"
+          ),
+        },
   },
   plugins: [react()],
   resolve: {
