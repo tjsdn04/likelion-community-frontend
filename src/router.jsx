@@ -25,7 +25,7 @@ import { PmPostingPage } from "@pages/mainPostingPage/PmPostingPage";
 import { QnAPostingPage } from "@pages/schPostingPage/QnAPostinPage";
 import { SchDefaultPostingPage } from "@pages/schPostingPage/SchDefaultPostingPage";
 import { SchAllBoardPage } from "@pages/schBoardPage/SchAllBoardPage";
-import { SchQnaBoardPage } from "@pages/schBoardPage/schQnaBoardPage";
+import { SchQnaBoardPage } from "@pages/schBoardPage/SchQnaBoardPage";
 import { CommuMainPage } from "@pages/commuPage/CommuMainPage";
 import { DefaultBoardPage } from "@pages/boardPage/DefaultBoardPage";
 import { BeBoardPage } from "@pages/boardPage/BeBoardPage";
