@@ -92,8 +92,7 @@ import axiosInstance from "@apis/axiosInstance";
 
 export const VerificationPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
-  const [verificationPhoto, setVerificationPhoto] = useState(null);
+  const [verificationPhoto, setVerificationPhoto] = useState(null); // isVerified 상태 제거
   const { goTo } = useCustomNavigate();
   const location = useLocation();
   const formData = location.state;
@@ -112,17 +111,8 @@ export const VerificationPage = () => {
     console.log("선택한 이미지 파일:", file); // 이미지 파일 확인
   };
 
-  const handleCheck = () => {
-    setIsLoading(true);
-    setIsVerified(false);
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsVerified(true);
-    }, 1000);
-  };
-
   const handleSignupSubmit = async () => {
-    if (!formData || !verificationPhoto) {
+    if (!formData) {
       alert("모든 필드를 채워주세요.");
       return;
     }
@@ -135,7 +125,11 @@ export const VerificationPage = () => {
     finalFormData.append("password2", formData.passwordConfirm);
     finalFormData.append("email", formData.email);
     finalFormData.append("membership_term", formData.membership_term);
-    finalFormData.append("verification_photo", verificationPhoto);
+
+    // verificationPhoto가 있으면 추가
+    if (verificationPhoto) {
+      finalFormData.append("verification_photo", verificationPhoto);
+    }
 
     console.log("보낸 데이터:");
     for (let [key, value] of finalFormData.entries()) {
@@ -191,22 +185,11 @@ export const VerificationPage = () => {
               />
             </S.InputImg>
           </S.InputBox>
-          <S.Confirm onClick={handleCheck}>검사</S.Confirm>
         </S.InputWrap>
-        {isLoading && <Loading />}
-        {isVerified && (
-          <S.CompleteMessage>
-            유효한 회원 인증 이미지입니다.
-          </S.CompleteMessage>
-        )}
       </S.ContentWrap>
 
       <S.ContentWrap>
-        <Button
-          btnName="회원가입"
-          onClick={handleSignupSubmit}
-          disabled={!isVerified}
-        />
+        <Button btnName="회원가입" onClick={handleSignupSubmit} />
         <S.LogIn>
           <span className="text">이미 회원이신가요?</span>
           <span className="underline" onClick={() => goTo("/login")}>
