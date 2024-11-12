@@ -4,6 +4,7 @@ import { Dropdown } from "@components/adminAtt/Dropdown.jsx";
 import postIcon from "@assets/icons/postIcon.svg";
 import FileUpload from "@components/adminAttRegister/FileUpload.jsx";
 import Calendar from "@components/adminAttRegister/Calendar.jsx";
+
 export const AdminAttPost = ({
   setDropdownValue,
   setTitle,
@@ -11,6 +12,8 @@ export const AdminAttPost = ({
   setTime,
   setBody,
   setFile,
+  setLateTime, // 추가된 부분
+  setAbsentTime, // 추가된 부분
 }) => {
   const filterData = {
     data: ["전체트랙", "프론트엔드", "백엔드", "기획/디자인"],
@@ -39,16 +42,19 @@ export const AdminAttPost = ({
         </S.InputSectionGap>
         <S.InputSectionGap $gap10>
           <S.TimeDiv>
-            <S.TimeText>
-              지각기준(분):
-              <S.LateTime type="number" placeholder="ex 10" />
-            </S.TimeText>
+            <S.TimeText>지각기준(분): </S.TimeText>
+            <S.LateTime
+              type="number"
+              placeholder="ex 10"
+              onChange={(e) => setLateTime(e.target.value)}
+            />
           </S.TimeDiv>
           <S.TimeDiv>
-            <S.TimeText>
-              결석기준(분):
-              <S.AbsentTime placeholder="ex 30" />
-            </S.TimeText>
+            <S.TimeText>결석기준(분):</S.TimeText>
+            <S.AbsentTime
+              placeholder="ex 30"
+              onChange={(e) => setAbsentTime(e.target.value)}
+            />
           </S.TimeDiv>
         </S.InputSectionGap>
         <S.TextareaBody
