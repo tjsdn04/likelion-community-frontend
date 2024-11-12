@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as S from './MyPage.styled'
 import { Header } from '@components/Header'
 import { Footer } from '@components/Footer'
@@ -7,14 +7,39 @@ import myComment from '@assets/icons/myComment.svg'
 import myScrap from '@assets/icons/myScrap.svg'
 import upload from '@assets/icons/upload.svg'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 export const MyPage = () => {
 
+    const [name, setName] = useState('김멋사'); // 이름 임의로 넣었습니다
     const [schoolVerified, setSchoolVerified] =useState(false);
 
     const schoolUpdate = (e) => {
         setSchoolVerified(true);
     }
+
+    const getName = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}`, {
+                headers: {
+                    'Authorization':`Token ${token}`,
+                },
+            })
+            console.log("user Response", response.data);
+            if (response.data.name) {
+                setName(response.data.name)
+            } else {
+                console.log("사용자 이름 데이터 존재하지 않음")
+            }
+        } catch(e) {
+            console.error("errer",e);
+        }
+    }
+
+    useEffect(() => {
+        getName();
+    },[])
 
     return (
         <S.Wrapper>
@@ -26,7 +51,7 @@ export const MyPage = () => {
                         <S.Edit>수정</S.Edit>
                     </S.Top>
                     <S.Mid>
-                        <S.Name>김멋사</S.Name>
+                        <S.Name>{name}</S.Name>
                         <S.Badge>12기</S.Badge>
                         <S.Badge>아기사자</S.Badge>
                     </S.Mid>
