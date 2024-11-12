@@ -12,7 +12,7 @@ import axios from 'axios'
 export const MyPage = () => {
 
     const [name, setName] = useState('김멋사'); // 이름 임의로 넣었습니다
-    const [schoolVerified, setSchoolVerified] =useState(false);
+    const [schoolVerified, setSchoolVerified] =useState('pending');
 
     const schoolUpdate = (e) => {
         setSchoolVerified(true);
@@ -60,13 +60,30 @@ export const MyPage = () => {
                 <S.Img src='' alt="profile img"/>
             </S.Info>
             <S.School>
-                {schoolVerified?(
+                {schoolVerified == 'approved'?(
                     <S.SchoolName>
                         내 학교
                         <S.SchoolBadge>멋사대학교</S.SchoolBadge>
                     </S.SchoolName>
                     
-                ):
+                ):schoolVerified == 'pending'?
+                <>
+                    <S.SchoolName>내 학교</S.SchoolName>
+                    <S.SchoolVerify>
+                        <S.Guide>
+                            처리가 진행 중입니다
+                        </S.Guide>
+                    </S.SchoolVerify>
+                </>:schoolVerified == 'rejected'?
+                <>
+                    <S.SchoolName>내 학교</S.SchoolName>
+                    <S.SchoolVerify>
+                        <S.Guide>
+                            인증이 거부되었습니다
+                        </S.Guide>
+                    </S.SchoolVerify>
+                </>
+                :
                 <>
                     <S.SchoolName>내 학교</S.SchoolName>
                     <S.SchoolVerify>
@@ -93,6 +110,10 @@ export const MyPage = () => {
                     <Link to='/myScrap'><S.MypostTitle>스크랩</S.MypostTitle></Link>
                 </S.Scrap>
             </S.Mypost>
+            <S.User>
+                <S.Btn>로그아웃</S.Btn>
+                <S.Btn>회원탈퇴</S.Btn>
+            </S.User>
             <Footer />
         </S.Wrapper>
     )
