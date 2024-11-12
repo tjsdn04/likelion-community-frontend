@@ -49,6 +49,7 @@ export const InputTitle = styled.input`
   /* width: 100%; */
   height: 33px;
   flex-grow: 1;
+  min-width: 0; /* flex-grow가 적용될 때 줄어들 수 있도록 설정 */
   border: 1px solid #cccccc;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);

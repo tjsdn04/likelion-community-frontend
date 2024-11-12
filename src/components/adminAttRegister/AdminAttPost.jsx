@@ -3,7 +3,7 @@ import * as S from "./AdminAttPost.styled.js";
 import { Dropdown } from "@components/adminAtt/Dropdown.jsx";
 import postIcon from "@assets/icons/postIcon.svg";
 import FileUpload from "@components/adminAttRegister/FileUpload.jsx";
-
+import Calendar from "@components/adminAttRegister/Calendar.jsx";
 export const AdminAttPost = ({
   setDropdownValue,
   setTitle,
@@ -33,7 +33,8 @@ export const AdminAttPost = ({
           />
         </S.InputSectionGap>
         <S.InputSectionGap $gap10>
-          <S.InputDate onChange={(e) => setDate(e.target.value)} />
+          <Calendar setDate={setDate} />
+          {/* <S.InputDate onChange={(e) => setDate(e.target.value)} /> */}
           <S.InputTime onChange={(e) => setTime(e.target.value)} />
         </S.InputSectionGap>
         <S.InputSectionGap $gap10>
