@@ -35,10 +35,6 @@ export const SchMainPage = () => {
             <img src={ notice } alt="notice" />
             <S.Title>공지사항</S.Title>
           </S.Button>
-          <S.Button>
-            <img src={ community } alt="community" />
-            <S.Title>커뮤니티</S.Title>
-          </S.Button>
         </S.Buttons>
         <S.Boards>
           <Board title="전체게시판" posts={posts1} link='/schAllBoard' />
