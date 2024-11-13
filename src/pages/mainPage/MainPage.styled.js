@@ -6,7 +6,7 @@ export const MainWrapper = styled.section`
     width: 88.89%;
     max-width: 540px;
     justify-content: center;
-    align-items: center;
+    align-items: center !important;
     margin: 7.25vh auto 110px auto;
 `;
 
@@ -16,7 +16,7 @@ export const MainSwiper = styled.div`
 
 export const Slider1 = styled.div`
     background-color: #FF7710;
-    width: 100%;
+    width: 100% !;
     height: 100%;
     display: flex;
     gap: 10px;
@@ -32,6 +32,7 @@ export const Slider2 = styled.img`
     width: 100%;
     object-fit: cover;
 `
+
 
 export const Left = styled.div`
     display: flex;
@@ -85,12 +86,12 @@ export const Title = styled.div`
     align-items: center;
     justify-content: space-between;
 `
+
 export const More = styled.div`
     font-size: 10px !important;
     color: #7C7C82;
     font-family: ${({ theme }) =>
     theme.fonts.PretendardRegular["font-family"]};
-
 `
 
 export const Posts = styled.div`
@@ -102,6 +103,6 @@ export const Posts = styled.div`
 
 export const Content = styled.div`
     display: flex;
-    width: 88.89%;
+    width: 100%;
     flex-direction: column;
 `
