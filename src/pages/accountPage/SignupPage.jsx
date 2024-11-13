@@ -1,5 +1,4 @@
-// 회원가입 페이지
-
+// 기본 회원가입 페이지
 import * as S from "./SignupPage.styled";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

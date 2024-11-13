@@ -10,10 +10,9 @@ export const Button = styled.button`
   height: 35px;
   color: #ffffff;
   font-family: ${({ theme }) => theme.fonts.PretendardBold["font-family"]};
-
   font-size: 15px;
+  border-radius: 4px;
   background-color: #ff7d2c;
-
   position: fixed;
   bottom: 30px;
   transform: translateX(-50%);
