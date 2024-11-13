@@ -11,6 +11,7 @@ export const Button = styled.button`
   color: #ffffff;
   font-family: ${({ theme }) => theme.fonts.PretendardBold["font-family"]};
   font-size: 15px;
+  border-radius: 4px;
   background-color: #ff7d2c;
   position: fixed;
   bottom: 30px;
