@@ -137,6 +137,7 @@ export const Mypost = styled.div`
     flex-direction: column;
     font-family: ${({ theme }) =>
     theme.fonts.PretendardMedium["font-family"]};
+    margin-bottom: 24px;
 `
 
 export const Post = styled.div`
@@ -172,3 +173,23 @@ export const MypostTitle = styled.p`
         text-decoration: none;
     }
 `;
+
+export const User = styled.div`
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    display: flex;
+    padding: 12px 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+`
+
+export const Btn = styled.button`
+    font-size: 16px;
+    font-family: ${({ theme }) =>
+    theme.fonts.PretendardMedium["font-family"]};
+    cursor: pointer;
+`
