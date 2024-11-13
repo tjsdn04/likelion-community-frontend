@@ -25,7 +25,7 @@ export const MainHeader = ({title}) => {
 const Wrapper = styled.div`
     width: 100%;
     max-width: 540px;
-    height: 35px;
+    height: 7.25vh;
     background-color: #F1F3F5;
     position: fixed;
     top: 0;

@@ -12,12 +12,12 @@ export const Buttons = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 55px 0 22px 0;
-
+    gap: 20px;
 `;
 
 export const Button = styled.div`
     background-color: #fff;
-    width: 30%;
+    width: 50%;
     height: 109px;
     border-radius: 25px;
     display: flex;

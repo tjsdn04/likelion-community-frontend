@@ -16,6 +16,7 @@ export const MainSwiper = styled.div`
 
 export const Slider1 = styled.div`
     background-color: #FF7710;
+    /* width: 80%; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -24,13 +25,28 @@ export const Slider1 = styled.div`
     border-radius: 20px;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
+    padding: 0 10px;
 `
 
 export const Slider2 = styled.img`
     border-radius: 20px;
     height: 140px;
+    /* width: 80%; */
     width: 100%;
     object-fit: cover;
+    margin: 0 auto;
+    padding: 0 10px;
+`
+
+export const Slider3 = styled.img`
+    border-radius: 20px;
+    height: 140px;
+    /* width: 80%; */
+    width: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+    padding-right: 10px;
 `
 
 export const Left = styled.div`
@@ -85,12 +101,12 @@ export const Title = styled.div`
     align-items: center;
     justify-content: space-between;
 `
+
 export const More = styled.div`
     font-size: 10px !important;
     color: #7C7C82;
     font-family: ${({ theme }) =>
     theme.fonts.PretendardRegular["font-family"]};
-
 `
 
 export const Posts = styled.div`
@@ -102,6 +118,6 @@ export const Posts = styled.div`
 
 export const Content = styled.div`
     display: flex;
-    width: 88.89%;
+    width: 100%;
     flex-direction: column;
 `

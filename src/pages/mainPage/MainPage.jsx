@@ -3,6 +3,7 @@ import { MainHeader } from "@components/MainHeader";
 import { Footer } from '@components/Footer'
 import logo from '@assets/images/whiteLogo.svg'
 import sliderImg from '@assets/images/slider.svg'
+import sliderImg2 from '@assets/images/slider2.webp'
 import { PopularPost } from '@components/mainPage/PopularPost';
 import { PopularData } from "../../constant/mainPage/popularPostData";
 import { TotalPost } from "@components/mainPage/TotalPost";
@@ -16,31 +17,35 @@ export const MainPage = () => {
 	return (
 		<S.MainWrapper>
 			<MainHeader title="EVERION" />
-			<S.Content>
 				<S.MainSwiper>
 					<Swiper
 					modules={[ Autoplay ]}
 					loop={true}
-					spaceBetween={30}
+					slidesPerView={1.5}
+					centeredSlides={true}
 					autoplay={{
 						delay: 3000,
 						disalbeOnInteraction: false }}
 					>
 					<SwiperSlide>
 						<S.Slider1>
-						<S.Left>
-							<S.Desc>멋쟁이 사자처럼</S.Desc>
-							<S.Desc>출석부터 네트워킹까지 한번에!</S.Desc>
-							<S.Name>EVERION</S.Name>
-						</S.Left>
-						<S.RightLogo src={logo} />
+							<S.Left>
+								<S.Desc>멋쟁이 사자처럼</S.Desc>
+								<S.Desc>출석부터 네트워킹까지 한번에!</S.Desc>
+								<S.Name>EVERION</S.Name>
+							</S.Left>
+							<S.RightLogo src={logo} />
 						</S.Slider1>
 					</SwiperSlide>
 					<SwiperSlide>
 						<S.Slider2 src={sliderImg} />
 					</SwiperSlide>
+					<SwiperSlide>
+						<S.Slider3 src={sliderImg2} />
+					</SwiperSlide>
 					</Swiper>
 				</S.MainSwiper>
+				<S.Content>
 				<S.Board>
 					<S.Title>실시간 인기글</S.Title>
 					<S.Posts>
@@ -56,7 +61,7 @@ export const MainPage = () => {
 						))}
 					</S.Posts>
 				</S.Board>
-				<S.Board>
+				{/* <S.Board>
 					<S.Title>전체글
 						<S.More>더보기</S.More>
 					</S.Title>
@@ -69,7 +74,7 @@ export const MainPage = () => {
 							/>
 						))}
 					</S.Posts>
-				</S.Board>
+				</S.Board> */}
 			</S.Content>
 			<Footer />
 		</S.MainWrapper>
