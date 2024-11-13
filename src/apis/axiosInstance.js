@@ -3,6 +3,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
+  withCredentials: true, // 여기에서 withCredentials 설정
 });
 
 export default axiosInstance;

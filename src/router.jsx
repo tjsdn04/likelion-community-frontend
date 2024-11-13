@@ -15,7 +15,7 @@ import { Loading } from "@components/account/Loading";
 import { LionAttInfoPage } from "@pages/lionAttPage/LionAttInfoPage";
 import { ChatListPage } from "@pages/chatPage/ChatListPage";
 import { ChatPage } from "@pages/chatPage/ChatPage";
-import { BePostingPage } from "@pages/mainPostingPage/BePostingPage ";
+import { BePostingPage } from "@pages/mainPostingPage/BePostingPage";
 import { DefaultPostingPage } from "@pages/mainPostingPage/DefaultPostingPage";
 import { FePostingPage } from "@pages/mainPostingPage/FePostingPage";
 import { JoinPostingPage } from "@pages/mainPostingPage/JoinPostingPage";
@@ -35,8 +35,17 @@ import { LionBoardPage } from "@pages/boardPage/LionBoardPage";
 import { NotiBoardPage } from "@pages/boardPage/NotiBoardPage";
 import { JoinBoardPage } from "@pages/boardPage/JoinBoardPage";
 import { MyPage } from "@pages/myPage/MyPage";
+import { BePostPage } from "@pages/mainPostPage/BePostPage";
+import { DefaultPostPage } from "@pages/mainPostPage/DefaultPostPage";
+import { FePostPage } from "@pages/mainPostPage/FePostPage";
+import { JoinPostPage } from "@pages/mainPostPage/JoinPostPage";
+import { LionPostPage } from "@pages/mainPostPage/LionPostPage";
+import { NotiPostPage } from "@pages/mainPostPage/NotiPostPage";
+import { PmPostPage } from "@pages/mainPostPage/PmPostPage";
+import { QnAPostPage } from "@pages/schPostPage/QnAPostPage";
+import { SchDefaultPostPage } from "@pages/schPostPage/schDefaultPostPage";
 import { MyPostPage } from "@pages/myPage/MyPostPage";
-import { MyCommentPage} from "@pages/myPage/MyCommentPage";
+import { MyCommentPage } from "@pages/myPage/MyCommentPage";
 import { MyScrapPage } from "@pages/myPage/MyScrapPage";
 
 export const router = createBrowserRouter([
@@ -79,6 +88,15 @@ export const router = createBrowserRouter([
       { path: "notiBoard", element: <NotiBoardPage /> },
       { path: "joinBoard", element: <JoinBoardPage /> },
       { path: "myPage", element: <MyPage /> },
+      { path: "bePostPage", element: <BePostPage /> },
+      { path: "defaultPostPage", element: <DefaultPostPage /> },
+      { path: "fePostPage", element: <FePostPage /> },
+      { path: "joinPostPage", element: <JoinPostPage /> },
+      { path: "lionPostPage", element: <LionPostPage /> },
+      { path: "notiPostPage", element: <NotiPostPage /> },
+      { path: "pmPostPage", element: <PmPostPage /> },
+      { path: "qnaPostPage", element: <QnAPostPage /> },
+      { path: "schDefaultPostPage", element: <SchDefaultPostPage /> },
       { path: "myPost", element: <MyPostPage /> },
       { path: "myComment", element: <MyCommentPage /> },
       { path: "myScrap", element: <MyScrapPage /> },
