@@ -6,7 +6,7 @@ export const MainWrapper = styled.section`
     width: 88.89%;
     max-width: 540px;
     justify-content: center;
-    align-items: center;
+    align-items: center !important;
     margin: 7.25vh auto 110px auto;
 `;
 
@@ -16,8 +16,7 @@ export const MainSwiper = styled.div`
 
 export const Slider1 = styled.div`
     background-color: #FF7710;
-    /* width: 80%; */
-    width: 100%;
+    width: 100% !;
     height: 100%;
     display: flex;
     gap: 10px;
@@ -25,29 +24,15 @@ export const Slider1 = styled.div`
     border-radius: 20px;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    padding: 0 10px;
 `
 
 export const Slider2 = styled.img`
     border-radius: 20px;
     height: 140px;
-    /* width: 80%; */
     width: 100%;
     object-fit: cover;
-    margin: 0 auto;
-    padding: 0 10px;
 `
 
-export const Slider3 = styled.img`
-    border-radius: 20px;
-    height: 140px;
-    /* width: 80%; */
-    width: 100%;
-    object-fit: cover;
-    margin: 0 auto;
-    padding-right: 10px;
-`
 
 export const Left = styled.div`
     display: flex;
