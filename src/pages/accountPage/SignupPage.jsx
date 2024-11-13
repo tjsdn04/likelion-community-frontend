@@ -1,4 +1,5 @@
 // 회원가입 페이지
+
 import * as S from "./SignupPage.styled";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,16 +15,15 @@ export const SignupPage = () => {
   const [form, setForm] = useState({
     name: "",
     nickname: "",
-    id: "",
+    username: "", // id -> username으로 수정
     password: "",
     passwordConfirm: "",
     email: "",
-    class: "",
+    membership_term: "", // class -> membership_term으로 수정
   });
 
   const [PwVisible, setPwVisible] = useState(false);
   const [ConfirmPwVisible, setConfirmPwVisible] = useState(false);
-
   const [PwValid, setPwValid] = useState(null);
   const [FormComplete, setFormComplete] = useState(false);
 
@@ -44,7 +44,7 @@ export const SignupPage = () => {
     setConfirmPwVisible((prev) => !prev);
   };
 
-  // 비밀번호 유효성 검사 (8자리 이상, 영어/숫자 포함)
+  // 비밀번호 유효성 검사
   const checkPw = () => {
     const pwPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (pwPattern.test(form.password)) {
@@ -82,7 +82,7 @@ export const SignupPage = () => {
       <S.ContentWrap>
         <InputBox title="이름" value={form.name} onChange={InputChange("name")} />
         <InputBox title="닉네임" value={form.nickname} onChange={InputChange("nickname")} />
-        <InputBox title="아이디" value={form.id} onChange={InputChange("id")} />
+        <InputBox title="아이디" value={form.username} onChange={InputChange("username")} />
 
         <S.PasswordWrapper>
           <InputBox
@@ -110,7 +110,7 @@ export const SignupPage = () => {
 
         <InputBox title="이메일" value={form.email} onChange={InputChange("email")} />
 
-        <LionClass value={form.class} onChange={InputChange("class")} />
+        <LionClass value={form.membership_term} onChange={InputChange("membership_term")} />
 
         <Button onClick={handleNextPage} disabled={!FormComplete} btnName="다음" />
       </S.ContentWrap>
