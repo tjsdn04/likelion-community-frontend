@@ -1,4 +1,4 @@
-// 자유 게시판 글 상세 페이지
+// 참여 게시판 글 상세 페이지
 
 import * as S from "./PostPage.styled";
 import React, { useState } from "react";
@@ -6,7 +6,7 @@ import { Header } from "@components/Header";
 import profileLion from "@assets/icons/profileLion.svg";
 import exImg from "@assets/images/ExImg.svg";
 
-export const DefaultPostPage = () => {
+export const JoinPostPage = () => {
   const [liked, setLiked] = useState(false);
   const [scrapped, setScrapped] = useState(false);
 
@@ -20,7 +20,7 @@ export const DefaultPostPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="전체 게시판" />
+      <Header title="참여 게시판" />
       <S.PostWrap>
         <S.User>
           <S.Writter>
