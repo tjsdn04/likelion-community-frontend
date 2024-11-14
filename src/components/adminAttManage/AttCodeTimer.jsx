@@ -1,38 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const CodeContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Code = styled.div`
-  background-color: #ff7710;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 8px;
-  margin: 0 3px;
-`;
-
-const Timer = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-  color: ${({ $isLate }) =>
-    $isLate ? "#ff6f69" : "#4CAF50"}; /* 빨간색 또는 초록색 */
-`;
-
 const AttCodeTimer = ({ code, startTime, lateTime, absentTime }) => {
   const [remainingTime, setRemainingTime] = useState(null);
   const [isLate, setIsLate] = useState(false);
@@ -75,15 +43,66 @@ const AttCodeTimer = ({ code, startTime, lateTime, absentTime }) => {
 
   return (
     <Wrapper>
-      <CodeContainer>
-        <span>출석코드:</span>
-        {code.map((digit, index) => (
-          <Code key={index}>{digit}</Code>
-        ))}
-      </CodeContainer>
+      <CodeTextWrapper>
+        <Text>출석코드:</Text>
+        <CodeContainer>
+          {code.map((digit, index) => (
+            <Code key={index}>{digit}</Code>
+          ))}
+        </CodeContainer>
+      </CodeTextWrapper>
       <Timer $isLate={isLate}>{formatTime(remainingTime)}</Timer>
     </Wrapper>
   );
 };
 
 export default AttCodeTimer;
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 10px 22px;
+  border-radius: 32px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+const CodeTextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 11px;
+`;
+const Text = styled.div`
+  display: flex;
+  font-size: 15px;
+  font-family: ${({ theme }) =>
+    theme.fonts.PretendardSemiBold["font-family"]};
+`;
+const CodeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const Code = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #ff7710;
+  color: #fff;
+  font-size: 22px;
+  font-family: ${({ theme }) =>
+    theme.fonts.PretendardBold["font-family"]};
+
+  border-radius: 10px;
+  /* margin: 0 3px; */
+`;
+
+const Timer = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  color: ${({ $isLate }) =>
+    $isLate ? "#ff6f69" : "#4CAF50"}; /* 빨간색 또는 초록색 */
+`;

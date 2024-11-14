@@ -1,10 +1,61 @@
 import React from "react";
 import styled from "styled-components";
+import AttStatusModal from "@components/adminAttManage/AttStatusModal";
+import { useState } from "react";
+const AttCard = ({
+  name,
+  details,
+  status: initialStatus,
+  onStatusChange,
+}) => {
+  const [status, setStatus] = useState(initialStatus);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState(initialStatus);
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  // 모달에서 상태를 변경 (확인 버튼 누르기 전)
+  const handleStatusClick = (newStatus) => {
+    setSelectedStatus(newStatus);
+  };
+  // 확인 버튼 클릭 시 상태를 변경하고 상위 컴포넌트에 전달
+  const handleConfirm = () => {
+    setStatus(selectedStatus); // 내부 상태 업데이트
+    onStatusChange(selectedStatus); // 상위 컴포넌트에 변경 사항 전달
+    closeModal(); // 모달 닫기
+  };
+
+  return (
+    <>
+      <CardWrapper>
+        <Content>
+          <Profile>
+            <ProfileImg />
+            <Info>
+              <Name>{name}</Name>|<Details> {details}</Details>
+            </Info>
+          </Profile>
+          <Status $status={status} onClick={openModal}>
+            {status}
+          </Status>
+        </Content>
+      </CardWrapper>
+      <AttStatusModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onStatusClick={handleStatusClick}
+        selectedStatus={selectedStatus}
+        onConfirm={handleConfirm}
+      />
+    </>
+  );
+};
+
+export default AttCard;
 const CardWrapper = styled.div`
   display: flex;
   align-items: center;
-
+  justify-content: center;
   width: 100%;
   height: 60px;
   border-radius: 32px;
@@ -13,6 +64,7 @@ const CardWrapper = styled.div`
 `;
 const Content = styled.div`
   display: flex;
+  width: 93.75%;
   justify-content: space-between;
 `;
 const Profile = styled.div`
@@ -30,17 +82,28 @@ const ProfileImg = styled.div`
 
 const Info = styled.div`
   display: flex;
+  font-size: 16px;
+  color: #111111;
 `;
 
-const Name = styled.span`
+const Name = styled.div`
+  display: flex;
+  margin-right: 3px;
   font-size: 14px;
   font-weight: bold;
-  color: #333;
+  color: #111111;
+  font-size: 16px;
+  font-family: ${({ theme }) =>
+    theme.fonts.PretendardSemiBold["font-family"]};
 `;
 
-const Details = styled.span`
-  font-size: 12px;
-  color: #888;
+const Details = styled.div`
+  display: flex;
+  margin-left: 3px;
+  font-size: 14px;
+  font-family: ${({ theme }) =>
+    theme.fonts.PretendardSemiBold["font-family"]};
+  color: #767676;
 `;
 
 const Status = styled.button`
@@ -66,22 +129,3 @@ const Status = styled.button`
       ? "#C07D00"
       : "#760400"};
 `;
-
-const AttCard = ({ name, details, status }) => {
-  return (
-    <CardWrapper>
-      <Content>
-        <Profile>
-          <ProfileImg />
-          <Info>
-            <Name>{name}</Name>
-            <Details>|{details}</Details>
-          </Info>
-        </Profile>
-        <Status $status={status}>{status}</Status>
-      </Content>
-    </CardWrapper>
-  );
-};
-
-export default AttCard;
