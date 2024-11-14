@@ -1,13 +1,59 @@
 // src/api/axiosInstance.js
+// import axios from "axios";
+
+// // CSRF 토큰을 가져오는 함수
+// function getCSRFToken() {
+//   const csrfCookie = document.cookie
+//     .split("; ")
+//     .find((row) => row.startsWith("csrftoken="));
+//   return csrfCookie ? csrfCookie.split("=")[1] : null;
+// }
+
+// const axiosInstance = axios.create({
+//   baseURL: import.meta.env.VITE_BASE_URL,
+//   withCredentials: true, // 쿠키를 포함하여 요청 보내기
+// });
+
+// // CSRF 토큰을 헤더에 추가
+// const csrfToken = getCSRFToken();
+// if (csrfToken) {
+//   axiosInstance.defaults.headers.common["X-CSRFToken"] = csrfToken;
+// }
+
+// export default axiosInstance;
+
 import axios from "axios";
 
+// CSRF 토큰을 가져오는 함수
+function getCSRFToken() {
+  const csrfCookie = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("csrftoken="));
+  return csrfCookie ? csrfCookie.split("=")[1] : null;
+}
+
+// axios 인스턴스 생성
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
-  withCredentials: true, // 여기에서 withCredentials 설정
+  withCredentials: true, // 쿠키를 포함하여 요청 보내기
 });
 
-export default axiosInstance;
+// 요청 인터셉터를 사용하여 CSRF 토큰을 모든 요청에 추가
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const csrfToken = getCSRFToken();
+    console.log("CSRF Token:", csrfToken); // CSRF 토큰이 잘 설정되었는지 확인
+    if (csrfToken) {
+      config.headers["X-CSRFToken"] = csrfToken;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
+export default axiosInstance;
 // import * as S from "./MainPage.styled";
 
 // import React, { useEffect } from "react";

@@ -23,3 +23,9 @@ export const Content = styled.div`
   padding-top: 16px;
   box-sizing: border-box;
 `;
+
+export const AttCardWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+`;
