@@ -2,9 +2,9 @@
 import React from 'react'
 import * as S from './Board.styled'
 import { BoardInfo as BoardInfoComponent } from './BoardInfo'
-import exampleImg from '@assets/icons/exampleImg.svg'
 
-export const Board = ({id, title, body, time, anonymous, writer, comments_count, scraps_count}) => {
+export const Board = ({id, title, body, time, anonymous, writer, comments_count, scraps_count, image}) => {
+
 
     return (
         <S.Wrapper>
@@ -25,7 +25,7 @@ export const Board = ({id, title, body, time, anonymous, writer, comments_count,
                     scraps_count={scraps_count}
                 />
             </S.Left>
-            <S.RightImg src={exampleImg}/>
+            {image && <S.RightImg src={image}/>}
         </S.Wrapper>
     )
 }

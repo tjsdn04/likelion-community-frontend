@@ -11,7 +11,7 @@ export const Wrapper = styled.section`
 export const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 55px 0 22px 0;
+  margin: 7.25vh 0 22px 0;
   gap: 20px;
 `;
 

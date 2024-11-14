@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     padding: 10px 15px;
     height: 95px;
+    width: 100%;
 `
 
 export const Left = styled.div`
@@ -31,6 +32,7 @@ export const Title = styled.h2`
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    color: #000;
 `
 
 export const Context = styled.p`
@@ -45,4 +47,6 @@ export const Context = styled.p`
 
 export const RightImg = styled.img`
     margin-left: 7px;
+    max-width: 75px;
+    object-fit: cover;
 `
