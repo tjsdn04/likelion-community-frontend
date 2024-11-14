@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     border-radius: 8px;
-    background-color: ${({ pin }) => (pin ? '#FFEFCB' : 'white')} !important;
+    /* background-color: ${({ pin }) => (pin ? '#FFEFCB' : 'white')} !important; */
+    background-color: #fff;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
     display: flex;
     justify-content: space-between;
     padding: 10px 15px;
-    /* height: 95px; */
+    height: 95px;
 `
 
 export const Left = styled.div`
