@@ -10,7 +10,7 @@ export const AdminNameCard = ({
   return (
     <Wrapper>
       <Content>
-        <Profile profileImage={profile_image} />
+        <Profile $profileImage={profile_image} />
         <InfoText>
           담당자: {nickname} |<span> {membership_term}기 운영진</span>
         </InfoText>
@@ -37,9 +37,9 @@ const Content = styled.div`
 `;
 
 // prop을 필터링하여 DOM에 전달되지 않도록 처리
-const Profile = styled.div.attrs(({ profileImage }) => ({
+const Profile = styled.div.attrs(({ $profileImage }) => ({
   style: {
-    backgroundImage: profileImage ? `url(${profileImage})` : "none",
+    backgroundImage: $profileImage ? `url(${$profileImage})` : "none",
   },
 }))`
   display: flex;

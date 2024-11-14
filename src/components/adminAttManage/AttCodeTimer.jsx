@@ -29,8 +29,8 @@ const Code = styled.div`
 const Timer = styled.div`
   font-size: 16px;
   font-weight: bold;
-  color: ${({ isLate }) =>
-    isLate ? "#ff6f69" : "#4CAF50"}; /* 빨간색 또는 초록색 */
+  color: ${({ $isLate }) =>
+    $isLate ? "#ff6f69" : "#4CAF50"}; /* 빨간색 또는 초록색 */
 `;
 
 const AttCodeTimer = ({ code, startTime, lateTime, absentTime }) => {
@@ -81,7 +81,7 @@ const AttCodeTimer = ({ code, startTime, lateTime, absentTime }) => {
           <Code key={index}>{digit}</Code>
         ))}
       </CodeContainer>
-      <Timer isLate={isLate}>{formatTime(remainingTime)}</Timer>
+      <Timer $isLate={isLate}>{formatTime(remainingTime)}</Timer>
     </Wrapper>
   );
 };

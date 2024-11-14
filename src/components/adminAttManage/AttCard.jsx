@@ -53,16 +53,16 @@ const Status = styled.button`
   font-size: 15px;
   font-family: ${({ theme }) =>
     theme.fonts.PretendardSemiBold["font-family"]};
-  background-color: ${({ status }) =>
-    status === "출석"
+  background-color: ${({ $status }) =>
+    $status === "출석"
       ? "#A2FF9A"
-      : status === "지각"
+      : $status === "지각"
       ? "#FFF39A"
       : "#FF9A9A"};
-  color: ${({ status }) =>
-    status === "출석"
+  color: ${({ $status }) =>
+    $status === "출석"
       ? "#067600"
-      : status === "지각"
+      : $status === "지각"
       ? "#C07D00"
       : "#760400"};
 `;
@@ -78,7 +78,7 @@ const AttCard = ({ name, details, status }) => {
             <Details>|{details}</Details>
           </Info>
         </Profile>
-        <Status status={status}>{status}</Status>
+        <Status $status={status}>{status}</Status>
       </Content>
     </CardWrapper>
   );

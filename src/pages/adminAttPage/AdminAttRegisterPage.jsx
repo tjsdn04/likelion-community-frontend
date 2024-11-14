@@ -74,15 +74,15 @@ export const AdminAttRegisterPage = () => {
     const formDataToSend = new FormData();
     const codeString = formData.code.join(""); // 배열을 문자열로 변환
 
-    formDataToSend.append("code", codeString);
-    formDataToSend.append("dropdownValue", formData.dropdownValue);
+    formDataToSend.append("auth_code", codeString);
+    formDataToSend.append("track", formData.dropdownValue);
     formDataToSend.append("title", formData.title);
     formDataToSend.append("date", formData.date);
     formDataToSend.append("time", formData.time);
-    formDataToSend.append("body", formData.body);
+    formDataToSend.append("description", formData.body);
     formDataToSend.append("file", formData.file);
-    formDataToSend.append("lateTime", formData.lateTime);
-    formDataToSend.append("absentTime", formData.absentTime);
+    formDataToSend.append("late_threshold", formData.lateTime);
+    formDataToSend.append("absent_threshold", formData.absentTime);
 
     // 콘솔에 FormData 내용 출력 (백엔드 전송 코드로 대체)
     console.log(
