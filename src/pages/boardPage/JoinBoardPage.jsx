@@ -15,8 +15,6 @@ export const JoinBoardPage = () => {
         try{
             const response = await axiosInstance.get('/post/mainboard');
             console.log('API response:', response.data);
-            console.log('댓글:', response.data.comments_count)
-            console.log('유저고유아이디:', response.data.writer)
             setPosts(Array.isArray(response.data) ? response.data : [response.data]);
         } catch(error) {
             console.log('error:',error)
@@ -32,19 +30,22 @@ export const JoinBoardPage = () => {
         <S.Wrapper>
             <Header title="참여 게시판"/>
             <S.Content>
-                {posts.filter(post => post.board_title === '참여게시판').map((post, index) => (
-                    <S.Back>
-                        <SchBoard 
-                            id={index}
-                            title={post.title}
-                            body={post.body}
-                            time={post.time}
-                            anonymous={post.anonymous}
-                            writer={post.writer}
-                            comments_count={post.comments_count}
-                            scraps_count={post.scraps_count}
-                        />                        
-                    </S.Back>
+                {posts.filter(post => post.board_title === '참여게시판').map((post, id) => (
+                    <Link to={`/joinPostPage/${post.id}`} style={{"width":"100%"}}>
+                        <S.Back>
+                            <SchBoard 
+                                id={post.id}
+                                title={post.title}
+                                body={post.body}
+                                time={post.time}
+                                anonymous={post.anonymous}
+                                writer={post.writer.name}
+                                comments_count={post.comments_count}
+                                scraps_count={post.scraps_count}
+                                image={post.image}
+                            />                        
+                        </S.Back>
+                    </Link>
                 ))}
             </S.Content>
             <Link to='/JoinPostingPage'>

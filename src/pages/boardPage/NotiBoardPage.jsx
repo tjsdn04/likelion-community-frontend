@@ -14,10 +14,8 @@ export const NotiBoardPage = () => {
 
     const fetchPosts = async () => {
         try{
-            const response = await axiosInstance.get('/post/mainboard');
+            const response = await axiosInstance.get('/post/mainnoticeboard');
             console.log('API response:', response.data);
-            console.log('댓글:', response.data.comments_count)
-            console.log('유저고유아이디:', response.data.writer)
             setPosts(Array.isArray(response.data) ? response.data : [response.data]);
         } catch(error) {
             console.log('error:',error)
@@ -32,7 +30,7 @@ export const NotiBoardPage = () => {
         <S.Wrapper>
             <Header title="이벤트/공지 게시판"/>
             <S.Content>
-                {posts.filter(post => post.board_title === '백엔드 게시판').map((post, index) => (
+                {posts.filter(post => post.board_title === '이벤트/공지게시판').map((post, index) => (
                     <S.Back>
                         <SchBoard 
                             id={index}
@@ -40,9 +38,10 @@ export const NotiBoardPage = () => {
                             body={post.body}
                             time={post.time}
                             anonymous={post.anonymous}
-                            writer={post.writer}
+                            writer={post.writer.name}
                             comments_count={post.comments_count}
                             scraps_count={post.scraps_count}
+                            image={post.image}
                         />                        
                     </S.Back>
                 ))}
