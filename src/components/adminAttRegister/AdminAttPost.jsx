@@ -11,6 +11,7 @@ export const AdminAttPost = ({
   setTitle,
   setDate,
   setTime,
+  setPlace,
   setBody,
   setFile,
   setLateTime,
@@ -84,6 +85,12 @@ export const AdminAttPost = ({
           <S.InputTime
             type="time"
             onChange={(e) => setTime(e.target.value)}
+          />
+        </S.InputSectionGap>
+        <S.InputSectionGap>
+          <S.InputPlace
+            placeholder="강의 장소를 입력해 주세요."
+            onChange={(e) => setPlace(e.target.value)}
           />
         </S.InputSectionGap>
         <S.InputSectionGap $gap10>
