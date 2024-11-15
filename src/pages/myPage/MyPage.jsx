@@ -9,7 +9,6 @@ import myComment from "@assets/icons/myComment.svg";
 import myScrap from "@assets/icons/myScrap.svg";
 import upload from "@assets/icons/upload.svg";
 import defaultProfile from "@assets/images/ExImg.svg";
-import defaultProfile from "@assets/images/ExImg.svg";
 import { Link } from "react-router-dom";
 import useFetchCsrfToken from "@hooks/useFetchCsrfToken"; // 커스텀 훅 가져오기
 import axiosInstance from "@apis/axiosInstance";
@@ -42,7 +41,6 @@ export const MyPage = () => {
           name: response.data.user_info.name,
           email: response.data.user_info.email,
           profile_image: response.data.user_info.profile_image,
-          membership_term: response.data.user_info.membership_term,
           membership_term: response.data.user_info.membership_term,
           role: response.data.user_info.role,
         });
@@ -154,31 +152,14 @@ export const MyPage = () => {
           <S.Top>
             <S.Title>내 정보</S.Title>
             <S.Edit></S.Edit>
-            <S.Edit></S.Edit>
           </S.Top>
           <S.Mid>
             <S.Name>{userInfo.name}</S.Name>
             <S.Badge>{userInfo.membership_term}기</S.Badge>
             {userInfo.role && <S.Badge>{userInfo.role}</S.Badge>}
-            <S.Badge>{userInfo.membership_term}기</S.Badge>
-            {userInfo.role && <S.Badge>{userInfo.role}</S.Badge>}
           </S.Mid>
           <S.Bottom>{userInfo.email}</S.Bottom>
         </S.Left>
-        {/* <S.Img
-          src={userInfo.profile_image || defaultProfile}
-          alt="profile img"
-          onClick={() => profileInputRef.current.click()}
-          style={{ cursor: "pointer" }}
-        /> */}
-        <S.Img
-          // 절대 경로와 캐시 무효화 적용
-          src={userInfo.profile_image ? `http://everion.store${userInfo.profile_image}?timestamp=${new Date().getTime()}` : defaultProfile}
-          alt="profile img"
-          onClick={() => profileInputRef.current.click()}
-          style={{ cursor: "pointer" }}
-        />
-        <input type="file" ref={profileInputRef} style={{ display: "none" }} onChange={handleProfileChange} />
         {/* <S.Img
           src={userInfo.profile_image || defaultProfile}
           alt="profile img"
