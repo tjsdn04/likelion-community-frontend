@@ -15,13 +15,13 @@ export const MainPage = () => {
 
 	// 각 게시판 별 인기글 1개씩 반환
 
-    // const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     const fetchPosts = async () => {
         try{
             const response = await axiosInstance.get('/post/popularposts');
             console.log('게시판 별 인기글 1개씩 :', response.data);
-            // setPosts(Array.isArray(response.data) ? response.data : [response.data]);
+            setPosts(Array.isArray(response.data) ? response.data : [response.data]);
         } catch(error) {
             console.log('error:',error)
         }
@@ -80,9 +80,10 @@ export const MainPage = () => {
 				<S.Board>
 					<S.Title>실시간 인기글</S.Title>
 					<S.Posts>
-						{PopularData.map((post,index) => (
+						{posts.map((post,index) => (
 							<PopularPost
 								key={index}
+								id={post.id}
 								board_title={post.board_title}
 								body={post.body}
 							/>
