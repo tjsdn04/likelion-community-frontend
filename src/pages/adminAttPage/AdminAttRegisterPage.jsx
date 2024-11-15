@@ -7,8 +7,11 @@ import { SubmitBtn } from "@components/adminAttRegister/SubmitBtn";
 import AdminAttCode from "@components/adminAttRegister/AdminAttCode";
 import { useState, useEffect } from "react";
 import axiosInstance from "@apis/axiosInstance";
+import useFetchCsrfToken from "@hooks/useFetchCsrfToken"; // 커스텀 훅 가져오기
 
 export const AdminAttRegisterPage = () => {
+  useFetchCsrfToken();
+
   const [formData, setFormData] = useState({
     code: ["", "", "", ""],
     dropdownValue: "",
@@ -82,7 +85,10 @@ export const AdminAttRegisterPage = () => {
     formDataToSend.append("time", formData.time);
     formDataToSend.append("place", formData.place);
     formDataToSend.append("description", formData.body);
-    formDataToSend.append("file", formData.file);
+    if (formData.file) {
+      // 파일이 있을 경우에만 추가
+      formDataToSend.append("file", formData.file);
+    }
     formDataToSend.append("late_threshold", formData.lateTime);
     formDataToSend.append("absent_threshold", formData.absentTime);
 
