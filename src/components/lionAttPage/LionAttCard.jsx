@@ -1,10 +1,8 @@
 //출석 글 카드
-import * as S from "./AttCard.styled";
-import cardOpen from "@assets/icons/cardOpen.png";
-import cardClose from "@assets/icons/cardClose.png";
+import * as S from "./LionAttCard.styled";
 import dateIcon from "@assets/icons/dateIcon.svg";
 import pingIcon from "@assets/icons/pingIcon.svg";
-export function AttCard({
+export function LionAttCard({
   isOpen,
   onClick,
   date,
@@ -12,11 +10,12 @@ export function AttCard({
   time,
   title,
   track,
+  status,
 }) {
   return (
-    <S.Wrapper $isOpen={isOpen} onClick={onClick}>
+    <S.Wrapper $isOpen={isOpen == 1} onClick={onClick}>
       <S.Content>
-        <S.TextContent>
+        <S.DisplayBox>
           <div className="InfoDisplay">
             <S.InfoTextBox>
               <S.InfoIcon src={dateIcon} alt="dateIcon" />
@@ -29,14 +28,11 @@ export function AttCard({
               <S.InfoText>{place}</S.InfoText>
             </S.InfoTextBox>
           </div>
-          <S.TitleText>
-            [{track}] {title}
-          </S.TitleText>
-        </S.TextContent>
-        <S.cardOpenIcon
-          src={isOpen ? cardOpen : cardClose} // 아이콘 변경
-          alt="cardIcon"
-        />
+          <S.Status status={status}>{status}</S.Status>
+        </S.DisplayBox>
+        <S.TitleText>
+          [{track}] {title}
+        </S.TitleText>
       </S.Content>
     </S.Wrapper>
   );
