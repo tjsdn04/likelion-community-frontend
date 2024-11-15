@@ -1,12 +1,31 @@
 // 메인 페이지에 사용할 헤더
+
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import logo from "@assets/images/orangeLogo.png";
 import alarm from "@assets/icons/alarm.svg";
 import defaultProfile from "@assets/images/ExImg.svg";
 
 import { Link } from "react-router-dom";
+import axiosInstance from "@apis/axiosInstance";
 
-export const MainHeader = ({ title, profileImage }) => {
+export const MainHeader = ({ title }) => {
+  const [profileImage, setProfileImage] = useState(defaultProfile);
+
+  // 사용자 정보 가져오기
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axiosInstance.get("/mypage/");
+        const userProfileImage = response.data.user_info.profile_image;
+        setProfileImage(userProfileImage ? `http://everion.store${userProfileImage}` : defaultProfile);
+      } catch (error) {
+        console.error("사용자 정보를 불러오는 중 오류가 발생했습니다:", error);
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
   return (
     <Wrapper>
       <Content>
