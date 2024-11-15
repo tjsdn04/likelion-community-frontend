@@ -3,9 +3,10 @@ import React from 'react'
 import * as S from './Board.styled'
 import { BoardInfo as BoardInfoComponent } from './BoardInfo'
 
-export const Board = ({id, title, body, time, anonymous, writer, comments_count, scraps_count, image}) => {
-
-
+export const Board = ({id, title, body, time, anonymous, writer, comments_count, scraps_count, images}) => {
+    
+    const image = images && images.length > 0 ? images[0].image : null;
+    
     return (
         <S.Wrapper>
             <S.Left>

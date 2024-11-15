@@ -40,7 +40,7 @@ export const NotiPostPage = () => {
       <Content 
         title={post.title}
         body={post.body}
-        image={post.image}
+        images={post.images}
         likes_count={post.likes_count}
         scraps_count={post.scraps_count}
         time={post.time}

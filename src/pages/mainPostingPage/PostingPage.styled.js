@@ -15,7 +15,3 @@ export const ContentWrapper = styled.div`
 export const ContentWrap = styled.div`
   width: 85%;
 `;
-
-export const Button = styled.div`
-  width: 85%;
-`;

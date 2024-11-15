@@ -34,8 +34,18 @@ export const KakaoSignupPage = () => {
 
   const isFormComplete = form.name && form.nickname && form.class;
 
-  // URL에서 닉네임 가져오기
+  // 페이지 로드 시 CSRF 토큰 설정 요청
   useEffect(() => {
+    const getCsrfToken = async () => {
+      try {
+        await axiosInstance.get('/signup/set-csrf-cookie/');
+      } catch (error) {
+        console.error('CSRF 토큰을 설정하는 데 실패했습니다:', error);
+      }
+    };
+
+    getCsrfToken(); // CSRF 토큰 요청 실행
+
     const params = new URLSearchParams(location.search);
     const nickname = params.get("nickname");
     if (nickname) {
@@ -50,7 +60,7 @@ export const KakaoSignupPage = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
-    setFileName(file ? file.name : ""); // 파일명 설정
+    setFileName(file ? file.name : "");
     console.log("선택된 이미지 파일:", file);
   };
 
@@ -125,10 +135,7 @@ export const KakaoSignupPage = () => {
       console.log("회원가입 성공:", response.data.message);
       navigate("/main", { state: form });
     } catch (error) {
-      console.error(
-        "회원가입 실패:",
-        error.response?.data || error.message
-      );
+      console.error("회원가입 실패:", error.response?.data || error.message);
       alert("회원가입에 실패했습니다. 다시 시도해주세요.");
     }
   };

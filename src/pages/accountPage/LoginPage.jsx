@@ -1,4 +1,3 @@
-// 기본 로그인 페이지
 import * as S from "./LoginPage.styled";
 import { Header } from "@components/Header";
 import { Button } from "@components/account/Button";
@@ -9,7 +8,6 @@ import invisibleIcon from "@assets/icons/eyeClosedToggle.svg";
 import visibleIcon from "@assets/icons/eyeOpenedToggle.svg";
 import { useEffect, useState } from "react";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
-
 import axiosInstance from "@apis/axiosInstance";
 
 export const LoginPage = () => {
@@ -107,3 +105,5 @@ export const LoginPage = () => {
     </S.Wrapper>
   );
 };
+
+export default LoginPage;
