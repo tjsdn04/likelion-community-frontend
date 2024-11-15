@@ -20,7 +20,15 @@ export const MyPage = () => {
     profile_image: "",
     membership_term: "",
     role: "",
+    school_name: "",
+    track: "",
   });
+
+  // const [details, setDetails] = useState({
+  //   school_name: "",
+  //   track: "",
+  // });
+
   const [schoolVerified, setSchoolVerified] = useState("");
   const [verificationPhoto, setVerificationPhoto] = useState(null);
 
@@ -41,11 +49,13 @@ export const MyPage = () => {
           email: response.data.user_info.email,
           profile_image: response.data.user_info.profile_image,
           membership_term: response.data.user_info.membership_term,
-          role: response.data.executive_verification_status,
+          is_staff: response.data.is_staff,
+          school_name: response.data.details.school_name,
+          track: response.data.details.track,
         });
 
-        console.log("학교 인증 상태: ", response.data.school_verification_status);
-        setSchoolVerified(response.data.school_verification_status);
+        console.log("학교 인증 상태: ", response.data.verification_status.school_status);
+        setSchoolVerified(response.data.verification_status.school_status);
       } else {
         console.log("사용자 정보가 존재하지 않습니다.");
       }
@@ -121,7 +131,7 @@ export const MyPage = () => {
 
     try {
       // Axios POST 요청 보내기
-      const response = await axiosInstance.post("/mypage/schoolverification/", formData, {
+      const response = await axiosInstance.post("/mypage/verification/", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // FormData를 전송할 때 multipart/form-data 설정
         },
@@ -189,7 +199,7 @@ export const MyPage = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm("정말로 회원탈퇴를 하시겠습니까?")) {
       try {
-        await axiosInstance.delete("/signup/delete/");
+        await axiosInstance.delete("/signup/delete_user/");
         window.location.href = "/";
       } catch (e) {
         console.error("회원탈퇴 오류:", e);
@@ -208,8 +218,11 @@ export const MyPage = () => {
           </S.Top>
           <S.Mid>
             <S.Name>{userInfo.name}</S.Name>
-            <S.Badge>{userInfo.membership_term}기</S.Badge>
-            {userInfo.role !== "none" && <S.Badge>{userInfo.role}</S.Badge>}
+            <S.Badge>
+              {userInfo.membership_term}기 {userInfo.track && userInfo.track}
+            </S.Badge>
+            {userInfo.is_staff !== "none" && <S.Badge>{userInfo.is_staff === true ? "운영진" : "아기사자"}</S.Badge>}
+            {/* {userInfo.track && <S.Track>{userInfo.track}</S.Track>} */}
           </S.Mid>
           <S.Bottom>{userInfo.email}</S.Bottom>
         </S.Left>
@@ -232,7 +245,7 @@ export const MyPage = () => {
         {schoolVerified === "approved" ? (
           <S.SchoolName>
             내 학교
-            <S.SchoolBadge>멋사대학교</S.SchoolBadge>
+            <S.SchoolBadge>{userInfo.school_name ? userInfo.school_name : "학교 없음"}</S.SchoolBadge>
           </S.SchoolName>
         ) : schoolVerified === "pending" ? (
           <S.SchoolVerify>
