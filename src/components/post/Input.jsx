@@ -5,7 +5,7 @@ import comment from "@assets/icons/comment.svg";
 import { useState } from "react";
 import axiosInstance from "@apis/axiosInstance";
 
-export const Input = ({ postId, addComment }) => {
+export const Input = ({ postId, onAddComment }) => {
 
   const [content, setContent] = useState("");
   const [anonymous, setAnonymous] = useState(false);
@@ -25,12 +25,20 @@ export const Input = ({ postId, addComment }) => {
         board: postId,
       };
 
-      const response = await axiosInstance.post("/post/maincomment/", requestBody);
-      
+     
+      const response = await axiosInstance.post(
+        "/post/maincomment/",
+        requestBody,
+        {
+          headers: {
+            "Content-Type": "application/json", // FormData 전송 시 헤더 설정
+          },
+        }
+      );
       console.log("댓글 작성 성공:", response.data);
 
-      if (addComment) {
-        addComment(response.data);
+      if (onAddComment) {
+        onAddComment(response.data);
       }
 
       // 입력 필드 초기화
