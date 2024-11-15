@@ -38,6 +38,7 @@ export const JoinPostPage = () => {
     <S.Wrapper>
       <Header title="참여 게시판" />
       <Content 
+        id={post.id}
         title={post.title}
         body={post.body}
         images={post.images}
@@ -46,6 +47,7 @@ export const JoinPostPage = () => {
         time={post.time}
         writer={post.writer.name}
         anonymous={post.anonymous}
+        username={post.writer.username}
       />
       <S.CommentWrap>
         <S.CommentTitle>댓글(2)</S.CommentTitle>

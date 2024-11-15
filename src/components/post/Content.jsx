@@ -87,7 +87,6 @@ const user = anonymous ? '익명' : writer;
 
   const isAuthor = myUsername === username;
 
-
   return (
     <S.PostWrap>
       <S.User>
