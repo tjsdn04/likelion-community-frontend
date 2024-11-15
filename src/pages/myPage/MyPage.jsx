@@ -19,7 +19,6 @@ export const MyPage = () => {
     email: "",
     profile_image: "",
     membership_term: "",
-    membership_term: "",
     role: "",
   });
   const [schoolVerified, setSchoolVerified] = useState("");
@@ -42,8 +41,10 @@ export const MyPage = () => {
           email: response.data.user_info.email,
           profile_image: response.data.user_info.profile_image,
           membership_term: response.data.user_info.membership_term,
-          role: response.data.user_info.role,
+          role: response.data.executive_verification_status,
         });
+
+        console.log("학교 인증 상태: ", response.data.school_verification_status);
         setSchoolVerified(response.data.school_verification_status);
       } else {
         console.log("사용자 정보가 존재하지 않습니다.");
@@ -96,6 +97,56 @@ export const MyPage = () => {
 
   // 학교 인증 요청 함수
   const submitSchoolVerification = async () => {
+    if (schoolVerified === "pending" || schoolVerified === "approved") {
+      alert("이미 학교 인증 요청이 처리 중이거나 완료되었습니다.");
+      return;
+    }
+
+    console.log("학교 인증 요청 함수 실행"); // 디버깅용
+
+    // 파일이 선택되었는지 확인
+    if (!verificationPhoto) {
+      alert("인증할 사진을 선택해주세요.");
+      return;
+    }
+
+    // FormData 객체 생성 및 파일 추가
+    const formData = new FormData();
+    formData.append("verification_photo", verificationPhoto);
+
+    // FormData에 포함된 데이터 확인 (디버깅용)
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+
+    try {
+      // Axios POST 요청 보내기
+      const response = await axiosInstance.post("/mypage/schoolverification/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // FormData를 전송할 때 multipart/form-data 설정
+        },
+        withCredentials: true, // 쿠키를 포함하여 요청을 보낼 경우
+      });
+
+      alert("학교 인증이 제출되었습니다.");
+      setSchoolVerified("pending");
+    } catch (e) {
+      // 서버 에러 응답 확인
+      if (e.response) {
+        console.error("서버 응답 오류:", e.response.data);
+      } else {
+        console.error("학교 인증 오류:", e);
+      }
+      alert("학교 인증 중 오류가 발생했습니다.");
+    }
+  };
+
+  {
+    /* 
+  // 학교 인증 요청 함수
+  const submitSchoolVerification = async () => {
+    console.log("학교 인증 요청 함수 실행"); // 디버깅용
+
     if (!verificationPhoto) {
       alert("인증할 사진을 선택해주세요.");
       return;
@@ -121,6 +172,8 @@ export const MyPage = () => {
       alert("학교 인증 중 오류가 발생했습니다.");
     }
   };
+*/
+  }
 
   // 로그아웃 함수
   const handleLogout = async () => {
@@ -156,7 +209,7 @@ export const MyPage = () => {
           <S.Mid>
             <S.Name>{userInfo.name}</S.Name>
             <S.Badge>{userInfo.membership_term}기</S.Badge>
-            {userInfo.role && <S.Badge>{userInfo.role}</S.Badge>}
+            {userInfo.role !== "none" && <S.Badge>{userInfo.role}</S.Badge>}
           </S.Mid>
           <S.Bottom>{userInfo.email}</S.Bottom>
         </S.Left>
