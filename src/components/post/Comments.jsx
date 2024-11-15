@@ -10,7 +10,7 @@ export const Comments = ({ comment }) => {
   // 작성자 이름 결정
   const name = anonymous
     ? "익명"
-    : writer.username || "익명";
+    : writer.nickname || "익명";
 
   // 시간 포맷팅
   const date = new Date(time).toLocaleString("ko-KR", {
