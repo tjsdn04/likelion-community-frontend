@@ -26,6 +26,18 @@ export const SignupPage = () => {
   const [PwValid, setPwValid] = useState(null);
   const [FormComplete, setFormComplete] = useState(false);
 
+    // CSRF 토큰 설정
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      try {
+        await axiosInstance.get("/signup/set-csrf-cookie/");
+      } catch (error) {
+        console.error("CSRF 토큰 요청 오류:", error);
+      }
+    };
+    fetchCsrfToken();
+  }, []);
+  
   const InputChange = (field) => (e) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
     if (field === "passwordConfirm") {

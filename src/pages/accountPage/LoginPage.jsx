@@ -1,4 +1,3 @@
-// 기본 로그인 페이지
 import * as S from "./LoginPage.styled";
 import { Header } from "@components/Header";
 import { Button } from "@components/account/Button";
@@ -9,7 +8,6 @@ import invisibleIcon from "@assets/icons/eyeClosedToggle.svg";
 import visibleIcon from "@assets/icons/eyeOpenedToggle.svg";
 import { useEffect, useState } from "react";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
-
 import axiosInstance from "@apis/axiosInstance";
 
 export const LoginPage = () => {
@@ -52,13 +50,10 @@ export const LoginPage = () => {
   const onClickConfirmButton = async () => {
     try {
       // 로그인 API에 POST 요청 보내기
-      const response = await axiosInstance.post(
-        "/signup/login/custom/",
-        {
-          username: id,
-          password: pw,
-        }
-      );
+      const response = await axiosInstance.post("/signup/login/custom/", {
+        username: id,
+        password: pw,
+      });
 
       if (response.status === 200) {
         // 로그인 성공 시
@@ -124,3 +119,5 @@ export const LoginPage = () => {
     </S.Wrapper>
   );
 };
+
+export default LoginPage;

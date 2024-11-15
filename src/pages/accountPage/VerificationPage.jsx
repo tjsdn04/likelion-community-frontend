@@ -143,7 +143,7 @@ export const VerificationPage = () => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("회원가입 성공:", response.data);
-      goTo("/main");
+      goTo("/login");
     } catch (error) {
       if (error.response) {
         console.error("회원가입 실패:", error.response.data);
