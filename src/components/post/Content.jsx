@@ -4,7 +4,7 @@ import * as S from "./Content.styled";
 import React, { useState } from "react";
 import profileLion from "@assets/icons/profileLion.svg";
 
-export const Content = ({title, body, image, likes_count, scraps_count, time, writer, anonymous}) => {
+export const Content = ({title, body, images, likes_count, scraps_count, time, writer, anonymous}) => {
 
   const getTime = (time) => {
     const date=new Date(time);
@@ -48,7 +48,10 @@ const user = anonymous ? '익명' : writer;
       <S.Title>{title}</S.Title>
       <S.Content>{body}</S.Content>
       <S.ImgWrap>
-        {image && <S.Img src={image}/>}
+        {images && images.length > 0 
+        && images.map((imageObj, index) => (
+          <S.Img key={index} src={imageObj.image} alt={`Post Image ${index}`} />
+        ))}
       </S.ImgWrap>
       <S.Button>
         <S.Like onClick={handleLikeClick} liked={liked}>

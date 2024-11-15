@@ -42,7 +42,7 @@ export const DefaultBoardPage = () => {
                                 writer={post.writer.name}
                                 comments_count={post.comments_count}
                                 scraps_count={post.scraps_count}
-                                image={post.image}
+                                images={post.images}
                             />                        
                         </S.Back>
                     </Link>
