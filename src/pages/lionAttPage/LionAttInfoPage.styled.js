@@ -14,7 +14,7 @@ export const Content = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: 88.89%;
-  height: calc(900vh - 7.25vh);
+  height: calc(90vh - 7.25vh);
   overflow-y: auto;
   margin-top: 15px;
   gap: 20px;
