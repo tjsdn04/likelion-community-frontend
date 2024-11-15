@@ -189,7 +189,7 @@ export const MyPage = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm("정말로 회원탈퇴를 하시겠습니까?")) {
       try {
-        await axiosInstance.delete("/signup/delete/");
+        await axiosInstance.delete("/signup/delete_user/");
         window.location.href = "/";
       } catch (e) {
         console.error("회원탈퇴 오류:", e);
