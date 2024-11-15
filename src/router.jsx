@@ -47,7 +47,7 @@ import { SchDefaultPostPage } from "@pages/schPostPage/schDefaultPostPage";
 import { MyPostPage } from "@pages/myPage/MyPostPage";
 import { MyCommentPage } from "@pages/myPage/MyCommentPage";
 import { MyScrapPage } from "@pages/myPage/MyScrapPage";
-
+import { LionAttPage } from "@pages/lionAttPage/LionAttPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +59,7 @@ export const router = createBrowserRouter([
       { path: "adminAtt", element: <AdminAttPage /> },
       { path: "adminAttRegister", element: <AdminAttRegisterPage /> },
       { path: "adminAttManage", element: <AdminAttManagePage /> },
+      { path: "lionAtt", element: <LionAttPage /> },
       { path: "lionAttNum", element: <LionAttNum /> },
       { path: "lionAttInfo", element: <LionAttInfoPage /> },
       { path: "login", element: <LoginPage /> },
@@ -76,7 +77,10 @@ export const router = createBrowserRouter([
       { path: "notiPostingPage", element: <NotiPostingPage /> },
       { path: "pmPostingPage", element: <PmPostingPage /> },
       { path: "qnaPostingPage", element: <QnAPostingPage /> },
-      { path: "schDefaultPostingPage", element: <SchDefaultPostingPage /> },
+      {
+        path: "schDefaultPostingPage",
+        element: <SchDefaultPostingPage />,
+      },
       { path: "schAllBoard", element: <SchAllBoardPage /> },
       { path: "schQnaBoard", element: <SchQnaBoardPage /> },
       { path: "commuMain", element: <CommuMainPage /> },
