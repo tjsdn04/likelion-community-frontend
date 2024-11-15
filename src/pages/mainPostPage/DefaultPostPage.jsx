@@ -39,6 +39,7 @@ export const DefaultPostPage = () => {
     <S.Wrapper>
       <Header title="자유 게시판" />
       <Content 
+        id={post.id}
         title={post.title}
         body={post.body}
         images={post.images}
@@ -47,6 +48,7 @@ export const DefaultPostPage = () => {
         time={post.time}
         writer={post.writer.name}
         anonymous={post.anonymous}
+        username={post.writer.username} // unique 속성
       />
       <S.CommentWrap>
         <S.CommentTitle>댓글(2)</S.CommentTitle>
