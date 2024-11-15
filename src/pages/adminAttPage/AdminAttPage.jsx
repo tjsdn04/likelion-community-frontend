@@ -9,7 +9,7 @@ import axiosInstance from "@apis/axiosInstance"; // axiosInstance 가져오기
 import { useEffect, useState } from "react";
 
 const filterData = {
-  data: ["트랙선택", "프론트엔드", "백엔드", "기획/디자인"],
+  data: ["전체선택", "프론트엔드", "백엔드", "기획/디자인"],
 };
 
 export const AdminAttPage = () => {
