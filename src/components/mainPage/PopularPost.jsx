@@ -1,9 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
 
-
-export const PopularPost = ({board_title, body}) => {
+export const PopularPost = ({id, board_title, body}) => {
     
+    const boardPath = {
+        '자유게시판': 'defaultPostPage',
+        '프론트엔드 게시판': 'fePostPage',
+        '백엔드 게시판': 'bePostPage',
+        '기획/디자인 게시판': 'pmPostPage',
+        '아기사자게시판': 'lionPostPage',
+        '참여게시판': 'joinPostPage',
+        '이벤트/공지게시판': 'notiPostPage',
+    };
+    const path = boardPath[board_title];
+
     // const getTime = (time) => {
 	// 	const date=new Date(time);
 	// 	const now = new Date();
@@ -17,11 +28,10 @@ export const PopularPost = ({board_title, body}) => {
     // const user = anonymous ? '익명' : writer;
 
     return (
-        
         <Wrapper>
             <Top>
                 <Title>{board_title}</Title>
-                <More>더보기</More>
+                <Link to={`/${path}/${id}`}><More>더보기</More></Link>
             </Top>
             <Text>{body}</Text>
         </Wrapper>
