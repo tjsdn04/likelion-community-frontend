@@ -4,10 +4,14 @@ import * as S from "./PostingPage.styled";
 import { Header } from "@components/Header";
 import { PostingBox } from "@components/post/PostingBox";
 import axiosInstance from "@apis/axiosInstance";
+import useFetchCsrfToken from "@hooks/useFetchCsrfToken";
+import { useCustomNavigate } from "@hooks/useCustomNavigate";
 
 export const DefaultPostingPage = () => {
-
+  useFetchCsrfToken();
+  
   const boardTitle = "자유게시판";
+  const { goTo } = useCustomNavigate();
 
   const handlePostSubmit = async(postData) => {
     const formData = new FormData();
@@ -15,25 +19,18 @@ export const DefaultPostingPage = () => {
     formData.append("title", postData.title);
     formData.append("anonymous", postData.anonymous);
     formData.append("body", postData.body);
-    if (postData.image) formData.append("image", postData.image);
+    if (postData.images && postData.images.length > 0) {
+      postData.images.forEach((imageObj) => {
+        formData.append("images", imageObj.file);
+      });
+    }
     
     try {
-      
-      const getCsrfToken = async () => {
-        try {
-          await axiosInstance.get('/signup/set-csrf-cookie/');
-        } catch (error) {
-          console.error('CSRF 토큰을 설정하는 데 실패했습니다:', error);
-        }
-      };
-      getCsrfToken();
-
-      const response = await axiosInstance.post("/post/mainboard/", formData, {
-        headers: { 
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axiosInstance.post(
+        "/post/mainboard/", 
+        formData);
       console.log("POST 성공:", response.data);
+      goTo('/defaultBoard')
     } catch (error) {
       console.error("POST 실패:", error);
     }
