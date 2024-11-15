@@ -83,7 +83,7 @@ export const NotiPostPage = () => {
         likes_count={post.likes_count}
         scraps_count={post.scraps_count}
         time={post.time}
-        writer={post.writer.name}
+        writer={post.writer.nickname}
         anonymous={post.anonymous}
         username={post.writer.username}
       />
