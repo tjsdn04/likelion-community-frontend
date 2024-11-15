@@ -1,4 +1,5 @@
 import * as S from "./MainPage.styled";
+import { useState, useEffect } from "react";
 import { MainHeader } from "@components/MainHeader";
 import { Footer } from '@components/Footer'
 import logo from '@assets/images/whiteLogo.svg'
@@ -7,9 +8,29 @@ import { PopularPost } from '@components/mainPage/PopularPost';
 import { PopularData } from "../../constant/mainPage/popularPostData";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
+import axiosInstance from "@apis/axiosInstance";
 import 'swiper/css';
 
 export const MainPage = () => {
+
+	// 각 게시판 별 인기글 1개씩 반환
+
+    // const [posts, setPosts] = useState([]);
+
+    const fetchPosts = async () => {
+        try{
+            const response = await axiosInstance.get('/post/popularposts');
+            console.log('게시판 별 인기글 1개씩 :', response.data);
+            // setPosts(Array.isArray(response.data) ? response.data : [response.data]);
+        } catch(error) {
+            console.log('error:',error)
+        }
+    }
+
+    useEffect(() => {
+        fetchPosts();
+    }, [])
+
 
 	return (
 		<S.MainWrapper>

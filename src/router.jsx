@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
       { path: "school", element: <SchMainPage /> },
       { path: "adminAtt", element: <AdminAttPage /> },
       { path: "adminAttRegister", element: <AdminAttRegisterPage /> },
-      { path: "adminAttManage", element: <AdminAttManagePage /> },
+      { path: "adminAttManage/:id", element: <AdminAttManagePage /> },
       { path: "lionAtt", element: <LionAttPage /> },
       { path: "lionAttNum", element: <LionAttNum /> },
       { path: "lionAttInfo", element: <LionAttInfoPage /> },
