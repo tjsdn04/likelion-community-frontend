@@ -245,7 +245,7 @@ export const MyPage = () => {
     getUserInfo();
   }, []);
 
-  // 파일 선택 핸들러 (프로필 이미지 변경)
+  // 프로필 이미지 변경
   const handleProfileChange = (e) => {
     const newProfileImage = e.target.files[0];
     if (newProfileImage) {
@@ -258,7 +258,7 @@ export const MyPage = () => {
         })
         .then((response) => {
           alert("프로필 사진이 변경되었습니다.");
-          setUserInfo((prevState) => ({ ...prevState, profile_image: URL.createObjectURL(newProfileImage) }));
+          setUserInfo((prevState) => ({ ...prevState, profile_image: response.data.profile_image }));
         })
         .catch((error) => {
           console.error("프로필 사진 변경 오류:", error);
@@ -335,7 +335,7 @@ export const MyPage = () => {
         <S.Left>
           <S.Top>
             <S.Title>내 정보</S.Title>
-            <S.Edit>수정</S.Edit>
+            <S.Edit></S.Edit>
           </S.Top>
           <S.Mid>
             <S.Name>{userInfo.name}</S.Name>
@@ -344,7 +344,19 @@ export const MyPage = () => {
           </S.Mid>
           <S.Bottom>{userInfo.email}</S.Bottom>
         </S.Left>
-        <S.Img src={userInfo.profile_image || defaultProfile} alt="profile img" onClick={handleProfileClick} style={{ cursor: "pointer" }} />
+        {/* <S.Img
+          src={userInfo.profile_image || defaultProfile}
+          alt="profile img"
+          onClick={() => profileInputRef.current.click()}
+          style={{ cursor: "pointer" }}
+        /> */}
+        <S.Img
+          // 절대 경로와 캐시 무효화 적용
+          src={userInfo.profile_image ? `http://everion.store${userInfo.profile_image}?timestamp=${new Date().getTime()}` : defaultProfile}
+          alt="profile img"
+          onClick={() => profileInputRef.current.click()}
+          style={{ cursor: "pointer" }}
+        />
         <input type="file" ref={profileInputRef} style={{ display: "none" }} onChange={handleProfileChange} />
       </S.Info>
       <S.School>
