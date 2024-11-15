@@ -47,7 +47,7 @@ import { SchDefaultPostPage } from "@pages/schPostPage/schDefaultPostPage";
 import { MyPostPage } from "@pages/myPage/MyPostPage";
 import { MyCommentPage } from "@pages/myPage/MyCommentPage";
 import { MyScrapPage } from "@pages/myPage/MyScrapPage";
-
+import { LionAttPage } from "@pages/lionAttPage/LionAttPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +59,7 @@ export const router = createBrowserRouter([
       { path: "adminAtt", element: <AdminAttPage /> },
       { path: "adminAttRegister", element: <AdminAttRegisterPage /> },
       { path: "adminAttManage/:id", element: <AdminAttManagePage /> },
+      { path: "lionAtt", element: <LionAttPage /> },
       { path: "lionAttNum", element: <LionAttNum /> },
       { path: "lionAttInfo", element: <LionAttInfoPage /> },
       { path: "login", element: <LoginPage /> },
