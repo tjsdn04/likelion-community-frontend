@@ -5,13 +5,33 @@ import { Dropdown } from "@components/adminAtt/Dropdown";
 import adminPen from "@assets/icons/adminPen.svg";
 import { AttCard } from "@components/adminAtt/AttCard";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
+import axiosInstance from "@apis/axiosInstance"; // axiosInstance 가져오기
+import { useEffect, useState } from "react";
+
 const filterData = {
   data: ["트랙선택", "프론트엔드", "백엔드", "기획/디자인"],
 };
 
 export const AdminAttPage = () => {
   const { goTo } = useCustomNavigate();
+  const [attendances, setAttendances] = useState([]);
+  const [error, setError] = useState(null);
 
+  // 출석 목록 데이터를 가져오는 함수
+  useEffect(() => {
+    const fetchAttendances = async () => {
+      try {
+        const response = await axiosInstance.get("/attendance/main/");
+        setAttendances(response.data); // 성공적으로 데이터를 받아온 경우 상태에 설정
+      } catch (err) {
+        setError(
+          err.response?.data?.detail || "오류가 발생했습니다."
+        );
+      }
+    };
+
+    fetchAttendances();
+  }, []);
   return (
     <S.Wrapper>
       <Header title="출석" />
