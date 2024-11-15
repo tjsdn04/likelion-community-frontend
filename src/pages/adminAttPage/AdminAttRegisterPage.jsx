@@ -15,6 +15,7 @@ export const AdminAttRegisterPage = () => {
     title: "",
     date: "",
     time: "",
+    place: "",
     body: "",
     file: null,
     lateTime: "",
@@ -79,6 +80,7 @@ export const AdminAttRegisterPage = () => {
     formDataToSend.append("title", formData.title);
     formDataToSend.append("date", formData.date);
     formDataToSend.append("time", formData.time);
+    formDataToSend.append("place", formData.place);
     formDataToSend.append("description", formData.body);
     formDataToSend.append("file", formData.file);
     formDataToSend.append("late_threshold", formData.lateTime);
@@ -122,6 +124,7 @@ export const AdminAttRegisterPage = () => {
       formData.title &&
       formData.date &&
       formData.time &&
+      formData.place &&
       formData.body &&
       formData.lateTime &&
       formData.absentTime
@@ -148,6 +151,7 @@ export const AdminAttRegisterPage = () => {
           setTitle={(value) => handleFieldChange("title", value)}
           setDate={(value) => handleFieldChange("date", value)}
           setTime={(value) => handleFieldChange("time", value)}
+          setPlace={(value) => handleFieldChange("place", value)}
           setBody={(value) => handleFieldChange("body", value)}
           setFile={(file) => handleFieldChange("file", file)}
           setLateTime={(value) =>

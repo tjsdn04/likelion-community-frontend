@@ -7,25 +7,28 @@ import myComment from "@assets/icons/myComment.svg";
 import myScrap from "@assets/icons/myScrap.svg";
 import upload from "@assets/icons/upload.svg";
 import { Link } from "react-router-dom";
-import axiosInstance from '@apis/axiosInstance';
-import Cookies from 'js-cookie';
+import useFetchCsrfToken from "@hooks/useFetchCsrfToken"; // 커스텀 훅 가져오기
+import axiosInstance from "@apis/axiosInstance";
 
 export const MyPage = () => {
   const [userInfo, setUserInfo] = useState({
-    name: '',
-    email: '',
-    profile_image: '',
-    generation: '',
-    role: '',
+    name: "",
+    email: "",
+    profile_image: "",
+    generation: "",
+    role: "",
   });
   const [schoolVerified, setSchoolVerified] = useState("");
   const [verificationPhoto, setVerificationPhoto] = useState(null);
 
+  // CSRF 토큰 설정 훅 호출
+  useFetchCsrfToken();
+
   const getUserInfo = async () => {
     try {
-      const response = await axiosInstance.get('/mypage/', { withCredentials: true });
+      const response = await axiosInstance.get("/mypage/");
       console.log("user Response", response.data);
-  
+
       if (response.data.user_info) {
         setUserInfo({
           name: response.data.user_info.name,
@@ -44,18 +47,7 @@ export const MyPage = () => {
   };
 
   useEffect(() => {
-    const getCsrfToken = async () => {
-      try {
-        const response = await axiosInstance.get('/signup/get-csrf-token/', { withCredentials: true });
-        const csrfToken = response.data.csrfToken;
-        console.log('CSRF Token:', csrfToken);
-        axiosInstance.defaults.headers.common['X-CSRFToken'] = csrfToken;
-      } catch (e) {
-        console.error('CSRF 토큰 설정 오류:', e);
-      }
-    };
     getUserInfo();
-    getCsrfToken();
   }, []);
 
   // 파일 선택 핸들러
@@ -71,15 +63,18 @@ export const MyPage = () => {
     }
 
     const formData = new FormData();
-    formData.append('verification_photo', verificationPhoto);
+    formData.append("verification_photo", verificationPhoto);
 
     try {
-      const response = await axiosInstance.post('/mypage/schoolverification/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        withCredentials: true,
-      });
+      const response = await axiosInstance.post(
+        "/mypage/schoolverification/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       alert("학교 인증이 제출되었습니다.");
       setSchoolVerified("pending");
     } catch (e) {
@@ -91,10 +86,10 @@ export const MyPage = () => {
   // 로그아웃 함수
   const handleLogout = async () => {
     try {
-      await axiosInstance.post('/signup/logout/', {}, { withCredentials: true });
-      window.location.href = '/login';
+      await axiosInstance.post("/signup/logout/", {});
+      window.location.href = "/";
     } catch (e) {
-      console.error('로그아웃 오류:', e);
+      console.error("로그아웃 오류:", e);
     }
   };
 
@@ -102,8 +97,8 @@ export const MyPage = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm("정말로 회원탈퇴를 하시겠습니까?")) {
       try {
-        await axiosInstance.delete('/signup/delete/', { withCredentials: true });
-        window.location.href = '/';
+        await axiosInstance.delete("/signup/delete/");
+        window.location.href = "/";
       } catch (e) {
         console.error("회원탈퇴 오류:", e);
       }
@@ -155,7 +150,9 @@ export const MyPage = () => {
               <S.Guide>
                 학교와 직위를 인증할 수 있는 서류 첨부해주세요!
                 <input type="file" onChange={handleFileChange} />
-                <button onClick={submitSchoolVerification}>제출하기</button>
+                <button onClick={submitSchoolVerification}>
+                  제출하기
+                </button>
               </S.Guide>
             </S.SchoolVerify>
           </>

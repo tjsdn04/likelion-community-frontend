@@ -8,9 +8,11 @@ import { InputBox } from "@components/account/InputBox";
 import { LionClass } from "@components/account/LionClass";
 import invisibleIcon from "@assets/icons/eyeClosedToggle.svg";
 import visibleIcon from "@assets/icons/eyeOpenedToggle.svg";
+import useFetchCsrfToken from "@hooks/useFetchCsrfToken"; // 커스텀 훅 import
 
 export const SignupPage = () => {
   const navigate = useNavigate();
+  useFetchCsrfToken();
   const [form, setForm] = useState({
     name: "",
     nickname: "",
@@ -77,7 +79,9 @@ export const SignupPage = () => {
   };
 
   useEffect(() => {
-    const Complete = Object.values(form).every((value) => value.trim() !== "");
+    const Complete = Object.values(form).every(
+      (value) => value.trim() !== ""
+    );
     setFormComplete(Complete);
   }, [form]);
 
@@ -91,9 +95,21 @@ export const SignupPage = () => {
     <S.Wrapper>
       <Header title="회원가입" />
       <S.ContentWrap>
-        <InputBox title="이름" value={form.name} onChange={InputChange("name")} />
-        <InputBox title="닉네임" value={form.nickname} onChange={InputChange("nickname")} />
-        <InputBox title="아이디" value={form.username} onChange={InputChange("username")} />
+        <InputBox
+          title="이름"
+          value={form.name}
+          onChange={InputChange("name")}
+        />
+        <InputBox
+          title="닉네임"
+          value={form.nickname}
+          onChange={InputChange("nickname")}
+        />
+        <InputBox
+          title="아이디"
+          value={form.username}
+          onChange={InputChange("username")}
+        />
 
         <S.PasswordWrapper>
           <InputBox
@@ -113,17 +129,30 @@ export const SignupPage = () => {
             type={ConfirmPwVisible ? "text" : "password"}
             value={form.passwordConfirm}
             onChange={InputChange("passwordConfirm")}
-            toggleIcon={ConfirmPwVisible ? visibleIcon : invisibleIcon}
+            toggleIcon={
+              ConfirmPwVisible ? visibleIcon : invisibleIcon
+            }
             onToggleClick={toggleConfirmPwVisibility}
           />
           <S.CheckButton onClick={checkConfirmPw}>확인</S.CheckButton>
         </S.PasswordWrapper>
 
-        <InputBox title="이메일" value={form.email} onChange={InputChange("email")} />
+        <InputBox
+          title="이메일"
+          value={form.email}
+          onChange={InputChange("email")}
+        />
 
-        <LionClass value={form.membership_term} onChange={InputChange("membership_term")} />
+        <LionClass
+          value={form.membership_term}
+          onChange={InputChange("membership_term")}
+        />
 
-        <Button onClick={handleNextPage} disabled={!FormComplete} btnName="다음" />
+        <Button
+          onClick={handleNextPage}
+          disabled={!FormComplete}
+          btnName="다음"
+        />
       </S.ContentWrap>
     </S.Wrapper>
   );

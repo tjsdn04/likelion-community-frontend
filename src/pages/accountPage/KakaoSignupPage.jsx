@@ -1,9 +1,9 @@
-// KakaoSignupPage component
-
+//카카오추가정보입력 페이지
 import * as S from "./KakaoSignupPage.styled";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
+import useFetchCsrfToken from "@hooks/useFetchCsrfToken"; // 우리가 만든 훅 가져오기
 import { Header } from "@components/Header";
 import { Button } from "@components/account/Button";
 import { InputBox } from "@components/account/InputBox";
@@ -18,6 +18,9 @@ export const KakaoSignupPage = () => {
   const location = useLocation();
 
   const { goTo } = useCustomNavigate();
+
+  // 우리가 만든 CSRF 훅 사용
+  useFetchCsrfToken();
 
   const [form, setForm] = useState({
     name: "",
@@ -81,7 +84,6 @@ export const KakaoSignupPage = () => {
             "Content-Type": "multipart/form-data",
             Accept: "application/json",
           },
-          withCredentials: true, // withCredentials 추가
         }
       );
 
@@ -128,7 +130,6 @@ export const KakaoSignupPage = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          withCredentials: true, // withCredentials 추가
         }
       );
       console.log("회원가입 성공:", response.data.message);
