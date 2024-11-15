@@ -5,7 +5,6 @@ import list from "@assets/icons/list.svg";
 import dateIcon from "@assets/icons/date.svg";
 import location from "@assets/icons/location.svg";
 import image from "@assets/icons/image.svg";
-import EditDelModal from "@components/adminAttManage/EditDelModal";
 export const LionAttInfo = ({
   date,
   time,
@@ -15,30 +14,11 @@ export const LionAttInfo = ({
   description,
   file,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
-
   // 파일 이름 추출 함수
   const getFileName = (fileUrl) => {
     return fileUrl ? fileUrl.split("/").pop() : "파일이 없습니다.";
   };
 
-  const openModal = (message) => {
-    setModalMessage(message);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleEdit = () => {
-    openModal("수정하시겠습니까?");
-  };
-
-  const handleDelete = () => {
-    openModal("삭제하시겠습니까?");
-  };
   return (
     <S.Wrapper>
       <S.Top>
@@ -73,17 +53,6 @@ export const LionAttInfo = ({
           </S.FileDiv>
         )}
       </S.Mid>
-      {isModalOpen && (
-        <EditDelModal
-          message={modalMessage}
-          onConfirm={() => {
-            // 확인 버튼 클릭 시 로직 추가
-            console.log(`${modalMessage} 확인`);
-            closeModal();
-          }}
-          onCancel={closeModal}
-        />
-      )}
     </S.Wrapper>
   );
 };
