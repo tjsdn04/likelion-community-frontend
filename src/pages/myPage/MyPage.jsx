@@ -20,7 +20,15 @@ export const MyPage = () => {
     profile_image: "",
     membership_term: "",
     role: "",
+    school_name: "",
+    track: "",
   });
+
+  // const [details, setDetails] = useState({
+  //   school_name: "",
+  //   track: "",
+  // });
+
   const [schoolVerified, setSchoolVerified] = useState("");
   const [verificationPhoto, setVerificationPhoto] = useState(null);
 
@@ -41,11 +49,13 @@ export const MyPage = () => {
           email: response.data.user_info.email,
           profile_image: response.data.user_info.profile_image,
           membership_term: response.data.user_info.membership_term,
-          role: response.data.executive_verification_status,
+          role: response.data.verification_status.executive_status,
+          school_name: response.data.details.school_name,
+          track: response.data.details.track,
         });
 
-        console.log("학교 인증 상태: ", response.data.school_verification_status);
-        setSchoolVerified(response.data.school_verification_status);
+        console.log("학교 인증 상태: ", response.data.verification_status.school_status);
+        setSchoolVerified(response.data.verification_status.school_status);
       } else {
         console.log("사용자 정보가 존재하지 않습니다.");
       }
@@ -121,7 +131,7 @@ export const MyPage = () => {
 
     try {
       // Axios POST 요청 보내기
-      const response = await axiosInstance.post("/mypage/schoolverification/", formData, {
+      const response = await axiosInstance.post("/mypage/verification/", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // FormData를 전송할 때 multipart/form-data 설정
         },
@@ -210,6 +220,7 @@ export const MyPage = () => {
             <S.Name>{userInfo.name}</S.Name>
             <S.Badge>{userInfo.membership_term}기</S.Badge>
             {userInfo.role !== "none" && <S.Badge>{userInfo.role}</S.Badge>}
+            {userInfo.track && <S.Track>{userInfo.track}</S.Track>}
           </S.Mid>
           <S.Bottom>{userInfo.email}</S.Bottom>
         </S.Left>
@@ -232,7 +243,7 @@ export const MyPage = () => {
         {schoolVerified === "approved" ? (
           <S.SchoolName>
             내 학교
-            <S.SchoolBadge>멋사대학교</S.SchoolBadge>
+            <S.SchoolBadge>{userInfo.school_name}</S.SchoolBadge>
           </S.SchoolName>
         ) : schoolVerified === "pending" ? (
           <S.SchoolVerify>
