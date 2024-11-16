@@ -72,7 +72,7 @@ export const router = createBrowserRouter([
       { path: "verification", element: <VerificationPage /> },
       { path: "loading", element: <Loading /> },
       { path: "chatList", element: <ChatListPage /> },
-      { path: "chat", element: <ChatPage /> },
+      { path: "chat/:chatroom_id", element: <ChatPage /> },
       { path: "bePostingPage", element: <BePostingPage /> },
       { path: "defaultPostingPage", element: <DefaultPostingPage /> },
       { path: "fePostingPage", element: <FePostingPage /> },
