@@ -4,61 +4,82 @@ import { F5Header } from "@components/adminAttManage/F5Header";
 import AdminAttInfo from "@components/adminAttManage/AdminAttInfo";
 import AttCard from "@components/adminAttManage/AttCard";
 import AttCodeTimer from "@components/adminAttManage/AttCodeTimer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axiosInstance from "@apis/axiosInstance";
 
 export const AdminAttManagePage = () => {
-  // 출석 데이터를 상태로 관리
-  const [attendees, setAttendees] = useState([
-    { name: "이동건", details: "12기 프론트엔드", status: "출석" },
-    { name: "전해성", details: "12기 백엔드", status: "지각" },
-    { name: "윤나경", details: "12기 기획/디자인", status: "결석" },
-    { name: "박선우", details: "12기 프론트엔드", status: "결석" },
-    { name: "박채현", details: "12기 백엔드", status: "결석" },
-  ]);
-  const infoData = {
-    id: "2",
-    date: "2024-11-07",
-    time: "18:30",
-    place: "신공학과 5147",
-    track: "백엔드",
-    title: "9주차 세션 쉽게 배포하기",
-    description:
-      "늦지 않게 와주세요~ 일찍 오신분들은 5143에서 대기해주시면 됩니다.",
-    file: "https://example.com/9주차배포자료.pdf",
-  };
+  const { id } = useParams();
+  // API에서 받은 출석 데이터를 상태로 관리
+  const [attendance, setAttendance] = useState(null);
+  const [attendanceStatuses, setAttendanceStatuses] = useState([]);
+  const [code, setCode] = useState([]);
+  // useEffect를 사용해 API 요청
+  useEffect(() => {
+    const fetchAttendanceDetail = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `/attendance/detail/${id}/`
+        );
+        console.log("API 응답 데이터:", response.data);
+
+        const attendanceData = response.data.attendance;
+        setAttendance(attendanceData);
+        setAttendanceStatuses(response.data.attendance_statuses);
+
+        // auth_code를 배열로 변환하여 저장
+        if (attendanceData?.auth_code) {
+          const codeArray = attendanceData.auth_code
+            .split("")
+            .map(Number);
+          setCode(codeArray);
+        }
+      } catch (error) {
+        console.error("API 요청 실패:", error);
+      }
+    };
+
+    if (id) fetchAttendanceDetail();
+  }, [id]);
+
   // 상태 변경 함수
   const handleStatusChange = (index, newStatus) => {
-    const updatedAttendees = [...attendees];
-    updatedAttendees[index].status = newStatus;
-    setAttendees(updatedAttendees);
-    console.log("Updated Attendee:", updatedAttendees[index]);
+    const updatedStatuses = [...attendanceStatuses];
+    updatedStatuses[index].status = newStatus;
+    setAttendanceStatuses(updatedStatuses);
+    console.log("Updated Attendee Status:", updatedStatuses[index]);
   };
+  const startTime = attendance
+    ? `${attendance.date} ${attendance.time}`
+    : "";
   return (
     <S.Wrapper>
       <F5Header title="출석 관리" />
       <S.Content>
-        <AdminAttInfo
-          date={infoData.date}
-          time={infoData.time}
-          place={infoData.place}
-          track={infoData.track}
-          title={infoData.title}
-          description={infoData.description}
-          file={infoData.file}
-        />
+        {attendance && (
+          <AdminAttInfo
+            date={attendance.date}
+            time={attendance.time}
+            place={attendance.place}
+            track={attendance.track}
+            title={attendance.title}
+            description={attendance.description}
+            file={attendance.file}
+          />
+        )}
         <AttCodeTimer
-          code={[1, 2, 5, 6]}
-          startTime="2024-11-13 20:31"
-          lateTime={2} // 30분 지각
-          absentTime={1} // 10분 결석
+          code={code} // 변환된 code 배열 사용
+          startTime={startTime} // attendance에서 가져온 startTime
+          lateTime={attendance?.late_threshold} // 지각 시간에 접근
+          absentTime={attendance?.absent_threshold} // 결석 시간에 접근
         />
         <S.AttCardWrapper>
-          {attendees.map((attendee, index) => (
+          {attendanceStatuses.map((status, index) => (
             <AttCard
               key={index}
-              name={attendee.name}
-              details={attendee.details}
-              status={attendee.status}
+              name={status.user_name}
+              details={`${status.membership_term}기 ${status.user_track}`}
+              status={status.status}
               onStatusChange={(newStatus) =>
                 handleStatusChange(index, newStatus)
               }

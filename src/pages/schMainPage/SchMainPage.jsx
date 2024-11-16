@@ -8,13 +8,11 @@ import notice from "@assets/icons/notice.svg";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
 import axiosInstance from "@apis/axiosInstance"; // axiosInstance 가져오기
 import { useState, useEffect } from "react";
-import { Back } from '@components/schBoard/Back'
-import userVerification from '@hooks/userVerification';
+import { Back } from "@components/schBoard/Back";
+import userVerification from "@hooks/userVerification";
 
 export const SchMainPage = () => {
-
   const verification = userVerification();
-
 
   const { goTo } = useCustomNavigate();
   const [isStaff, setIsStaff] = useState(false); //운영진유무 상태관리
@@ -32,7 +30,6 @@ export const SchMainPage = () => {
     fetchIsStaff();
   }, []);
   console.log("운영진이니?:", isStaff);
-
 
   // 예시 데이터
   const posts1 = [
@@ -75,7 +72,7 @@ export const SchMainPage = () => {
         />
       </S.Boards>
       <Footer />
-      <Back style={{ display: verification==="approved" ? "none" : "block" }}/>
+      {/* <Back style={{ display: verification==="approved" ? "none" : "block" }}/> */}
     </S.Wrapper>
   );
 };

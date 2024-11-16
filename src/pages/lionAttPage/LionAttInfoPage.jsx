@@ -5,6 +5,7 @@ import * as S from "./LionAttInfoPage.styled";
 import LionAttInfo from "@components/lionAttPage/LionAttInfo";
 import LionAttTimer from "@components/lionAttPage/LionAttTimer";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
+
 export const LionAttInfoPage = () => {
   const infoData = {
     id: "2",
@@ -19,6 +20,7 @@ export const LionAttInfoPage = () => {
     status: "",
   };
   const { goTo } = useCustomNavigate();
+
   return (
     <S.Wrapper>
       <Header title="출석 정보" />
@@ -39,17 +41,17 @@ export const LionAttInfoPage = () => {
           </S.AttScoreTitle>
           <S.AttScoreBody>
             <S.AttBox
-              bgColor={
+              $bgColor={
                 infoData.status === "출석"
                   ? "rgba(162, 255, 154, 0.50)"
                   : "none"
               }
-              fontColor={
+              $fontColor={
                 infoData.status === "출석" ? "#51804D" : "#000000"
               }
             >
               <S.AttBoxText
-                textColor={
+                $textColor={
                   infoData.status === "출석" ? "#8CBB88" : "#767676"
                 }
               >
@@ -59,17 +61,17 @@ export const LionAttInfoPage = () => {
             </S.AttBox>
 
             <S.AttBox
-              bgColor={
+              $bgColor={
                 infoData.status === "지각"
                   ? "rgba(255, 243, 154, 0.50)"
                   : "none"
               }
-              fontColor={
+              $fontColor={
                 infoData.status === "지각" ? "#80794D" : "#000000"
               }
             >
               <S.AttBoxText
-                textColor={
+                $textColor={
                   infoData.status === "지각" ? "#BBB488" : "#767676"
                 }
               >
@@ -79,17 +81,17 @@ export const LionAttInfoPage = () => {
             </S.AttBox>
 
             <S.AttBox
-              bgColor={
+              $bgColor={
                 infoData.status === "결석"
                   ? "rgba(255, 154, 154, 0.50)"
                   : "none"
               }
-              fontColor={
+              $fontColor={
                 infoData.status === "결석" ? "#804D4D" : "#000000"
               }
             >
               <S.AttBoxText
-                textColor={
+                $textColor={
                   infoData.status === "결석" ? "#BB8888" : "#767676"
                 }
               >

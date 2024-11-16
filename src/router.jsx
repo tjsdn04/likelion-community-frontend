@@ -48,6 +48,7 @@ import { MyPostPage } from "@pages/myPage/MyPostPage";
 import { MyCommentPage } from "@pages/myPage/MyCommentPage";
 import { MyScrapPage } from "@pages/myPage/MyScrapPage";
 import { LionAttPage } from "@pages/lionAttPage/LionAttPage";
+
 import { ErrorPage } from "@pages/errorPage/ErrorPage";
 
 export const router = createBrowserRouter([
@@ -64,7 +65,7 @@ export const router = createBrowserRouter([
       { path: "adminAttManage/:id", element: <AdminAttManagePage /> },
       { path: "lionAtt", element: <LionAttPage /> },
       { path: "lionAttNum", element: <LionAttNum /> },
-      { path: "lionAttInfo", element: <LionAttInfoPage /> },
+      { path: "lionAttInfo/:id", element: <LionAttInfoPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignupPage /> },
       { path: "kakaoSignup", element: <KakaoSignupPage /> },
