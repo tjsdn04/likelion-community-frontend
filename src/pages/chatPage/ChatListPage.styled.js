@@ -11,9 +11,7 @@ export const Wrapper = styled.section`
 export const Members = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 55px 0 89px 0;
+    margin: 7.25vh 0 89px 0;
 
-    p {
-        margin-top: 7.25vh;
-    }
+
 `
