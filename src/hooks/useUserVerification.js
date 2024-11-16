@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "@apis/axiosInstance";
 
-const userVerification = () => {
+const useUserVerification = () => {
   const [verification, setVerification] = useState("none");
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const userVerification = () => {
   return verification;
 };
 
-export default userVerification;
+export default useUserVerification;

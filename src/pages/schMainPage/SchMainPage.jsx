@@ -9,10 +9,12 @@ import { useCustomNavigate } from "@hooks/useCustomNavigate";
 import axiosInstance from "@apis/axiosInstance"; // axiosInstance 가져오기
 import { useState, useEffect } from "react";
 import { Back } from "@components/schBoard/Back";
-import userVerification from "@hooks/userVerification";
+import useUserVerification from "@hooks/useUserVerification";
 
 export const SchMainPage = () => {
-  const verification = userVerification();
+  const verification = useUserVerification();
+  console.log("지금 인증 되었나요? : ", verification);
+  console.log("같은가요?", verification === "approved");
 
   const { goTo } = useCustomNavigate();
   const [isStaff, setIsStaff] = useState(false); //운영진유무 상태관리
@@ -72,7 +74,7 @@ export const SchMainPage = () => {
         />
       </S.Boards>
       <Footer />
-      {/* <Back style={{ display: verification==="approved" ? "none" : "block" }}/> */}
+      {verification !== "approved" && <Back />}
     </S.Wrapper>
   );
 };
