@@ -31,6 +31,8 @@ export const MainPage = () => {
         fetchPosts();
     }, [])
 
+	
+
 
 	return (
 		<S.MainWrapper>

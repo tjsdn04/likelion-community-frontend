@@ -104,6 +104,7 @@ const Wrapper = styled.div`
     border-top-right-radius: 20px;
     filter: drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.12));
     display: flex;
+    z-index: 1002;
 `;
 
 const Button = styled.div`

@@ -48,7 +48,7 @@ export const CommuMainPage = () => {
     const getBoardTitle = (boardTitle) => {
         switch(boardTitle) {
             case "자유게시판":
-                return "💬 자유 게시판";
+                return "💬 자유게시판";
             case "프론트엔드 게시판":
                 return "🚥 프론트엔드 게시판";
             case "백엔드 게시판":
@@ -56,13 +56,13 @@ export const CommuMainPage = () => {
             case "기획/디자인 게시판":
                 return "🚥 기획/디자인 게시판";
             case "아기사자게시판":
-                return "🦁 아기사자 게시판";
+                return "🦁 아기사자게시판";
             case "이벤트/공지 게시판":
-                return "📢 이벤트/공지 게시판";
+                return "📢 이벤트/공지게시판";
             case "참여게시판":
-                return "✋ 참여 게시판";
+                return "✋ 참여게시판";
             default:
-                return "💬 자유 게시판";
+                return "💬 자유게시판";
         }
     }
 
@@ -104,7 +104,7 @@ export const CommuMainPage = () => {
                     </>
                     <S.Post>
                         <S.Top>
-                            <S.Name>📢 이벤트/공지 게시판</S.Name>
+                            <S.Name>📢 이벤트/공지게시판</S.Name>
                             <Link to={`/notiBoard`}>
                                 <S.More>더보기</S.More>
                             </Link>

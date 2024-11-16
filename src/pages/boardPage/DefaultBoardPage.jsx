@@ -26,7 +26,7 @@ export const DefaultBoardPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="자유 게시판" />
+      <Header title="자유게시판" />
       <S.Content>
         {posts
           .filter((post) => post.board_title === "자유게시판")
