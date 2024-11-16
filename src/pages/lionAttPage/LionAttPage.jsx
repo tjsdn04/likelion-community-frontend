@@ -1,8 +1,7 @@
 //아기사자 출석페이지
 import * as S from "./LionAttPage.styled";
 import { Header } from "@components/Header";
-import { Dropdown } from "@components/adminAtt/Dropdown";
-import adminPen from "@assets/icons/adminPen.svg";
+
 import { AttCard } from "@components/adminAtt/AttCard";
 import { LionAttCard } from "@components/lionAttPage/LionAttCard";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
@@ -12,6 +11,7 @@ import { useEffect, useState } from "react";
 export const LionAttPage = () => {
   const { goTo } = useCustomNavigate();
   const [attendanceRecords, setAttendanceRecords] = useState([]); // 출석 데이터를 저장하는 상태
+  const [userAttendance, setUserAttendance] = useState([]); // 유저 출석 데이터를 저장하는 상태
   const [statusCounts, setStatusCounts] = useState({
     present: 0,
     late: 0,
@@ -27,7 +27,7 @@ export const LionAttPage = () => {
         );
         console.log("전체데이터:", response.data);
         setAttendanceRecords(response.data.all_attendances || []);
-
+        setUserAttendance(response.data.user_attendance || []);
         // 한국어 변수명을 영어로 매핑
         const status = response.data.status_count;
         if (status) {
@@ -48,6 +48,13 @@ export const LionAttPage = () => {
 
     fetchAttendanceRecords();
   }, []);
+  // userAttendance에서 해당 record의 출석 상태를 찾는 함수
+  const getStatusForRecord = (recordId) => {
+    const matchedAttendance = userAttendance.find(
+      (item) => item.attendance === recordId
+    );
+    return matchedAttendance ? matchedAttendance.status : null; // 출석 상태 반환
+  };
 
   const calculateIsOpen = (date, time, absentThreshold) => {
     const openTime = new Date(`${date}T${time}`);
@@ -89,6 +96,7 @@ export const LionAttPage = () => {
                 record.time,
                 record.absent_threshold
               );
+              const status = getStatusForRecord(record.id); // 출석 상태 가져오기
               return isOpen === 1 ? (
                 <AttCard
                   key={record.id}
@@ -114,7 +122,7 @@ export const LionAttPage = () => {
                   time={record.time}
                   title={record.title}
                   track={record.track}
-                  status={record.status}
+                  status={status} // 출석 상태 전달
                 />
               );
             })

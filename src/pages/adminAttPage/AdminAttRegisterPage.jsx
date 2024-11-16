@@ -7,9 +7,11 @@ import AdminAttCode from "@components/adminAttRegister/AdminAttCode";
 import { useState, useEffect } from "react";
 import axiosInstance from "@apis/axiosInstance";
 import useFetchCsrfToken from "@hooks/useFetchCsrfToken"; // 커스텀 훅 가져오기
+import { useCustomNavigate } from "@hooks/useCustomNavigate"; // 커스텀 네비게이션 훅 가져오기
 
 export const AdminAttRegisterPage = () => {
   useFetchCsrfToken();
+  const { goTo } = useCustomNavigate(); // 커스텀 네비게이션 훅 사용
 
   const [formData, setFormData] = useState({
     code: ["", "", "", ""],
@@ -103,6 +105,7 @@ export const AdminAttRegisterPage = () => {
       );
       console.log("POST 성공:", response.data); // 성공 시 응답 출력
       alert("출석이 성공적으로 등록되었습니다!");
+      goTo("/adminAtt"); // 출석 등록이 성공하면 /adminAtt로 이동
     } catch (error) {
       if (error.response) {
         console.error("POST 실패:", error.response.data);

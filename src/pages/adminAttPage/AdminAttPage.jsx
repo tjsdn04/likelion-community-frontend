@@ -58,7 +58,6 @@ export const AdminAttPage = () => {
       <S.Content>
         {/* 액션바들 묶음 */}
         <S.ActionBar>
-          <Dropdown props={filterData} />
           <S.WriteBtn onClick={() => goTo("/adminAttRegister")}>
             글쓰기
             <S.AdminPenIcon src={adminPen} alt="penIcon" />

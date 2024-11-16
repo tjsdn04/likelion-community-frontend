@@ -1,4 +1,3 @@
-//운영진 출석 관리페이지
 import * as S from "./AdminAttManagePage.styled";
 import { F5Header } from "@components/adminAttManage/F5Header";
 import AdminAttInfo from "@components/adminAttManage/AdminAttInfo";
@@ -7,14 +6,15 @@ import AttCodeTimer from "@components/adminAttManage/AttCodeTimer";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "@apis/axiosInstance";
+import useFetchCsrfToken from "@hooks/useFetchCsrfToken";
 
 export const AdminAttManagePage = () => {
+  useFetchCsrfToken();
   const { id } = useParams();
-  // API에서 받은 출석 데이터를 상태로 관리
   const [attendance, setAttendance] = useState(null);
   const [attendanceStatuses, setAttendanceStatuses] = useState([]);
   const [code, setCode] = useState([]);
-  // useEffect를 사용해 API 요청
+
   useEffect(() => {
     const fetchAttendanceDetail = async () => {
       try {
@@ -27,7 +27,6 @@ export const AdminAttManagePage = () => {
         setAttendance(attendanceData);
         setAttendanceStatuses(response.data.attendance_statuses);
 
-        // auth_code를 배열로 변환하여 저장
         if (attendanceData?.auth_code) {
           const codeArray = attendanceData.auth_code
             .split("")
@@ -42,22 +41,36 @@ export const AdminAttManagePage = () => {
     if (id) fetchAttendanceDetail();
   }, [id]);
 
-  // 상태 변경 함수
-  const handleStatusChange = (index, newStatus) => {
+  const handleStatusChange = async (index, newStatus) => {
     const updatedStatuses = [...attendanceStatuses];
+    const statusId = updatedStatuses[index].id;
+
     updatedStatuses[index].status = newStatus;
     setAttendanceStatuses(updatedStatuses);
-    console.log("Updated Attendee Status:", updatedStatuses[index]);
+
+    try {
+      const response = await axiosInstance.patch(
+        `/attendance/status/${statusId}/update/`,
+        { status: newStatus }
+      );
+      console.log("출석 상태 변경 성공:", response.data);
+    } catch (error) {
+      console.error("출석 상태 변경 실패:", error);
+      alert("출석 상태 변경에 실패했습니다. 다시 시도해 주세요.");
+    }
   };
+
   const startTime = attendance
     ? `${attendance.date} ${attendance.time}`
     : "";
+
   return (
     <S.Wrapper>
       <F5Header title="출석 관리" />
       <S.Content>
         {attendance && (
           <AdminAttInfo
+            id={id} // ID prop 추가
             date={attendance.date}
             time={attendance.time}
             place={attendance.place}
@@ -68,10 +81,10 @@ export const AdminAttManagePage = () => {
           />
         )}
         <AttCodeTimer
-          code={code} // 변환된 code 배열 사용
-          startTime={startTime} // attendance에서 가져온 startTime
-          lateTime={attendance?.late_threshold} // 지각 시간에 접근
-          absentTime={attendance?.absent_threshold} // 결석 시간에 접근
+          code={code}
+          startTime={startTime}
+          lateTime={attendance?.late_threshold}
+          absentTime={attendance?.absent_threshold}
         />
         <S.AttCardWrapper>
           {attendanceStatuses.map((status, index) => (
