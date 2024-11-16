@@ -103,7 +103,7 @@ export const router = createBrowserRouter([
       { path: "notiPostPage/:id", element: <NotiPostPage /> },
       { path: "pmPostPage/:id", element: <PmPostPage /> },
       { path: "qnaPostPage/:id", element: <QnAPostPage /> },
-      { path: "schDefaultPostPage", element: <SchDefaultPostPage /> },
+      { path: "schDefaultPostPage/:id", element: <SchDefaultPostPage /> },
       { path: "myPost", element: <MyPostPage /> },
       { path: "myComment", element: <MyCommentPage /> },
       { path: "myScrap", element: <MyScrapPage /> },
