@@ -74,7 +74,7 @@ export const LionPostPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="아기사자 게시판" />
+      <Header title="아기사자게시판" />
       <Content 
         id={post.id}
         title={post.title}

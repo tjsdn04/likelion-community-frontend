@@ -74,7 +74,7 @@ export const NotiPostPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="이벤트/공지 게시판" />
+      <Header title="이벤트/공지게시판" />
       <Content 
         id={post.id}
         title={post.title}
