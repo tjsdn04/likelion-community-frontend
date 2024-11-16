@@ -8,15 +8,13 @@ import notice from "@assets/icons/notice.svg";
 import { useCustomNavigate } from "@hooks/useCustomNavigate";
 import axiosInstance from "@apis/axiosInstance"; // axiosInstance 가져오기
 import { useState, useEffect } from "react";
-import { Back } from '@components/schBoard/Back'
-import useUserVerification from '@hooks/useUserVerification';
+import { Back } from "@components/schBoard/Back";
+import useUserVerification from "@hooks/useUserVerification";
 
 export const SchMainPage = () => {
-
   const verification = useUserVerification();
-  console.log('지금 인증 되었나요? : ',verification)
-  console.log('같은가요?',verification==="approved")
-
+  console.log("지금 인증 되었나요? : ", verification);
+  console.log("같은가요?", verification === "approved");
 
   const { goTo } = useCustomNavigate();
   const [isStaff, setIsStaff] = useState(false); //운영진유무 상태관리
@@ -34,7 +32,6 @@ export const SchMainPage = () => {
     fetchIsStaff();
   }, []);
   console.log("운영진이니?:", isStaff);
-
 
   // 예시 데이터
   const posts1 = [
