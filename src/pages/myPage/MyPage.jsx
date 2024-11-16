@@ -151,40 +151,6 @@ export const MyPage = () => {
     }
   };
 
-  {
-    /* 
-  // 학교 인증 요청 함수
-  const submitSchoolVerification = async () => {
-    console.log("학교 인증 요청 함수 실행"); // 디버깅용
-
-    if (!verificationPhoto) {
-      alert("인증할 사진을 선택해주세요.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("verification_photo", verificationPhoto);
-
-    // 학교 인증사진 들어가는지
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value); // 키와 해당 값을 출력
-    }
-    try {
-      const response = await axiosInstance.post("/mypage/schoolverification/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      alert("학교 인증이 제출되었습니다.");
-      setSchoolVerified("pending");
-    } catch (e) {
-      console.error("학교 인증 오류:", e);
-      alert("학교 인증 중 오류가 발생했습니다.");
-    }
-  };
-*/
-  }
-
   // 로그아웃 함수
   const handleLogout = async () => {
     try {
@@ -218,20 +184,16 @@ export const MyPage = () => {
           </S.Top>
           <S.Mid>
             <S.Name>{userInfo.name}</S.Name>
-            <S.Badge>
-              {userInfo.membership_term}기 {userInfo.track && userInfo.track}
-            </S.Badge>
-            {userInfo.is_staff !== "none" && <S.Badge>{userInfo.is_staff === true ? "운영진" : "아기사자"}</S.Badge>}
-            {/* {userInfo.track && <S.Track>{userInfo.track}</S.Track>} */}
+            <S.BadgeWrap>
+              <S.Badge>{userInfo.membership_term}기</S.Badge>
+              <S.Badge>{userInfo.track && userInfo.track}</S.Badge>
+              {userInfo.is_staff !== "none" && <S.Badge>{userInfo.is_staff === true ? "운영진" : "아기사자"}</S.Badge>}
+              {/* {userInfo.track && <S.Track>{userInfo.track}</S.Track>} */}
+            </S.BadgeWrap>
           </S.Mid>
           <S.Bottom>{userInfo.email}</S.Bottom>
         </S.Left>
-        {/* <S.Img
-          src={userInfo.profile_image || defaultProfile}
-          alt="profile img"
-          onClick={() => profileInputRef.current.click()}
-          style={{ cursor: "pointer" }}
-        /> */}
+
         <S.Img
           // 절대 경로와 캐시 무효화 적용
           src={userInfo.profile_image ? `http://everion.store${userInfo.profile_image}?timestamp=${new Date().getTime()}` : defaultProfile}

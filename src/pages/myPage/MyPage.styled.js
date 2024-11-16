@@ -32,7 +32,6 @@ export const Img = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 1px solid black;
   object-fit: cover;
 `;
 
@@ -63,10 +62,17 @@ export const Name = styled.div`
   font-size: 15px;
 `;
 
+export const BadgeWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const Badge = styled.div`
   border-radius: 10px;
   background: #d9d9d9;
-  padding: 3px 10px;
+  padding: 3px 5px;
+  margin-right: 4px;
+  text-align: center;
 `;
 
 export const Track = styled.div`

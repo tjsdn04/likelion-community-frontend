@@ -97,7 +97,6 @@ const Right = styled.div`
 
 const Profile = styled.img`
   border-radius: 50%;
-  border: 1px solid black;
   width: 28px;
   height: 28px;
   object-fit: cover;
