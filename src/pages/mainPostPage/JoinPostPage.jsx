@@ -74,7 +74,7 @@ export const JoinPostPage = () => {
   
   return (
     <S.Wrapper>
-      <Header title="참여 게시판" />
+      <Header title="참여게시판" />
       <Content 
         id={post.id}
         title={post.title}
