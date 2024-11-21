@@ -36,7 +36,7 @@ export const JoinPostPage = () => {
       const data = response.data.results || response.data;
 
       const commentsArray = Array.isArray(data)
-        ? data.filter(comment => Number(comment.board.id) === postId)
+        ? data.filter(comment => Number(comment.board) === postId)
         : data && Number(data.board) === postId
         ? [data]
         : [];
