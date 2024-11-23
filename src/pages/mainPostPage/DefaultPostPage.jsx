@@ -85,7 +85,8 @@ export const DefaultPostPage = () => {
         time={post.time}
         writer={post.writer.nickname}
         anonymous={post.anonymous}
-        username={post.writer.username} // unique 속성
+        username={post.writer.username}
+        boardTitle={post.board_title}
       />
       <S.CommentWrap>
         <S.CommentTitle>댓글({comments.length})</S.CommentTitle>

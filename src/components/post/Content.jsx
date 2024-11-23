@@ -7,7 +7,7 @@ import axiosInstance from "@apis/axiosInstance";
 import useFetchCsrfToken from "@hooks/useFetchCsrfToken";
 import { useNavigate } from "react-router-dom";
 
-export const Content = ({ id, title, body, images, likes_count, scraps_count, time, writer, anonymous, username }) => {
+export const Content = ({ id, title, body, images, likes_count, scraps_count, time, writer, anonymous, username, boardTitle }) => {
   useFetchCsrfToken();
 
   const navigate = useNavigate();
@@ -74,6 +74,23 @@ export const Content = ({ id, title, body, images, likes_count, scraps_count, ti
 
   const isAuthor = myUsername === username;
 
+  // 게시글 수정
+  const postUpdate = () => {
+    const postUpdateUrl = {
+      자유게시판: "/defaultPostingPage",
+      "백엔드 게시판": "/bePostingPage",
+      "프론트엔드 게시판": "/fePostingPage",
+      "기획/디자인 게시판": "/pmPostingPage",
+      아기사자게시판: "/lionPostingPage",
+      참여게시판: "/joinPostingPage",
+      "이벤트/공지게시판": "/notiPostingPage",
+    };
+    const url = postUpdateUrl[boardTitle];
+    navigate(url, {
+      state: { id, title, body, images, boardTitle },
+    });
+  };
+
   return (
     <S.PostWrap>
       <S.User>
@@ -86,14 +103,16 @@ export const Content = ({ id, title, body, images, likes_count, scraps_count, ti
         </S.Writter>
         {isAuthor && (
           <S.ModifyWrap>
-            <S.Modify>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
+            <S.Modify onClick={postUpdate}>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
           </S.ModifyWrap>
         )}
       </S.User>
       <S.Title>{title}</S.Title>
       <S.Content>{body}</S.Content>
       <S.ImgWrap>
-        {images && images.length > 0 && images.map((imageObj, index) => <S.Img key={index} src={imageObj.image} alt={`Post Image ${index}`} />)}
+        {images &&
+          images.length > 0 &&
+          images.map((imageObj, index) => <S.Img key={index} src={imageObj.prview || imageObj.image} alt={`Post Image ${index}`} />)}
       </S.ImgWrap>
       <S.Button>
         <S.Like onClick={handleLikeClick} liked={liked}>
