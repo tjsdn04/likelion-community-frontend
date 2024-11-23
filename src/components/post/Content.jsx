@@ -17,7 +17,8 @@ export const Content = ({
   time, 
   writer, 
   anonymous, 
-  username
+  username,
+  boardTitle
 }) => {
   
   useFetchCsrfToken();
@@ -87,6 +88,25 @@ const user = anonymous ? '익명' : writer;
 
   const isAuthor = myUsername === username;
 
+  // 게시글 수정
+  const postUpdate = () => {
+
+    const postUpdateUrl = {
+      "자유게시판": "/defaultPostingPage",
+      "백엔드 게시판": "/bePostingPage",
+      "프론트엔드 게시판": "/fePostingPage",
+      "기획/디자인 게시판": "/pmPostingPage",
+      "아기사자게시판": "/lionPostingPage",
+      "참여게시판": "/joinPostingPage",
+      "이벤트/공지게시판": "/notiPostingPage",
+    }
+    const url = postUpdateUrl[boardTitle];
+    navigate(url, {
+      state:{id, title, body, images, boardTitle}
+    })
+  }
+
+  
   return (
     <S.PostWrap>
       <S.User>
@@ -99,7 +119,7 @@ const user = anonymous ? '익명' : writer;
         </S.Writter>
         {isAuthor && (
         <S.ModifyWrap>
-          <S.Modify>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
+          <S.Modify onClick={postUpdate}>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
         </S.ModifyWrap>          
         )}
       </S.User>
@@ -108,7 +128,7 @@ const user = anonymous ? '익명' : writer;
       <S.ImgWrap>
         {images && images.length > 0 
         && images.map((imageObj, index) => (
-          <S.Img key={index} src={imageObj.image} alt={`Post Image ${index}`} />
+          <S.Img key={index} src={imageObj.prview || imageObj.image} alt={`Post Image ${index}`} />
         ))}
       </S.ImgWrap>
       <S.Button>
