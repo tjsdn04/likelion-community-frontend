@@ -27,7 +27,7 @@ export const NotiBoardPage = () => {
 
     return (
         <S.Wrapper>
-            <Header title="이벤트/공지 게시판"/>
+            <Header title="이벤트/공지게시판"/>
             <S.Content>
                 {posts.filter(post => post.board_title === '이벤트/공지게시판').map((post, index) => (
                     <Link to={`/notiPostPage/${post.id}`} style={{"width":"100%"}}>

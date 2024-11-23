@@ -74,7 +74,7 @@ export const DefaultPostPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="자유 게시판" />
+      <Header title="자유게시판" />
       <Content
         id={post.id}
         title={post.title}

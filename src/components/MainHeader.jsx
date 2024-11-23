@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import logo from "@assets/images/orangeLogo.png";
-import alarm from "@assets/icons/alarm.svg";
 import defaultProfile from "@assets/images/ExImg.svg";
 
 import { Link } from "react-router-dom";
@@ -34,7 +33,6 @@ export const MainHeader = ({ title }) => {
           <Title>{title}</Title>
         </Left>
         <Right>
-          <img src={alarm} alt="alarm logo" />
           <Link to="/myPage">
             {/* <Profile src="" alt=" profile img" /> */}
             <Profile src={profileImage || defaultProfile} alt="profile img" />

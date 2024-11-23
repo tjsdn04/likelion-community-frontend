@@ -15,6 +15,27 @@ export const PopularPost = ({id, board_title, body}) => {
     };
     const path = boardPath[board_title];
 
+    const getBoardTitle = (boardTitle) => {
+        switch(boardTitle) {
+            case "자유게시판":
+                return "💬 자유게시판";
+            case "프론트엔드 게시판":
+                return "🚥 프론트엔드 게시판";
+            case "백엔드 게시판":
+                return "🚥 백엔드 게시판";
+            case "기획/디자인 게시판":
+                return "🚥 기획/디자인 게시판";
+            case "아기사자게시판":
+                return "🦁 아기사자게시판";
+            case "이벤트/공지 게시판":
+                return "📢 이벤트/공지게시판";
+            case "참여게시판":
+                return "✋ 참여게시판";
+            default:
+                return "💬 자유게시판";
+        }
+    }
+
     // const getTime = (time) => {
 	// 	const date=new Date(time);
 	// 	const now = new Date();
@@ -30,7 +51,7 @@ export const PopularPost = ({id, board_title, body}) => {
     return (
         <Wrapper>
             <Top>
-                <Title>{board_title}</Title>
+                <Title>{getBoardTitle(board_title)}</Title>
                 <Link to={`/${path}/${id}`}><More>더보기</More></Link>
             </Top>
             <Text>{body}</Text>
