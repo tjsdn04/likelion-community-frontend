@@ -29,12 +29,24 @@ export const Content = ({ id, title, body, images, likes_count, scraps_count, ti
   const [liked, setLiked] = useState(false);
   const [scrapped, setScrapped] = useState(false);
 
-  const handleLikeClick = () => {
-    setLiked(!liked);
+  const handleLikeClick = async () => {
+    try {
+      const response = await axiosInstance.post(`/post/mainboard/${id}/likes/`);
+      console.log("좋아요 처리 성공:", response.data);
+      setLiked(!liked);
+    } catch (error) {
+      console.error("좋아요 처리 실패:", error);
+    }
   };
 
-  const handleScrapClick = () => {
-    setScrapped(!scrapped);
+  const handleScrapClick = async () => {
+    try {
+      const response = await axiosInstance.post(`/post/mainboard/${id}/scraps/`);
+      console.log("스크랩 처리 성공:", response.data);
+      setScrapped(!scrapped);
+    } catch (error) {
+      console.error("스크랩 처리 실패:", error);
+    }
   };
 
   // 게시글 삭제

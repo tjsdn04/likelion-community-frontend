@@ -55,28 +55,28 @@ export const MyCommentPage = () => {
     <S.Wrapper>
       <Header title="댓글 쓴 글" />
       <S.Posts>
-        {MyCommentData.map((post) => {
-          const boardPath = boardPaths[post.board_title] || "/unknownboard"; // 기본값 설정
+        {MyCommentData.map((comment) => {
+          const boardPath = boardPaths[comment.board.board_title] || "/unknownboard"; // 기본값 설정
 
           return (
             <Link
-              to={`${boardPath}/${post.id}`} // 동적으로 게시판 경로 설정
-              key={post.id}
+              to={`${boardPath}/${comment.id}`} // 동적으로 게시판 경로 설정
+              key={comment.id}
               style={{
                 width: "100%",
                 color: "#323232",
               }}
             >
               <MyPagePost
-                id={post.id}
-                board_title={post.board.board_title}
-                title={post.board.body}
-                body={post.content}
-                images={post.board.images}
-                comments_count={post.board.comments_count}
-                time={post.time}
-                anonymous={post.anonymous}
-                writer={post.writer?.name}
+                id={comment.id}
+                board_title={comment.board.board_title}
+                title={comment.board.title}
+                body={comment.board.body}
+                images={comment.board.images}
+                comments_count={comment.board.comments_count}
+                time={comment.time}
+                anonymous={comment.anonymous}
+                writer={comment.writer?.name}
               />
             </Link>
           );
