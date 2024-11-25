@@ -54,8 +54,13 @@ export const MyPage = () => {
           track: response.data.details.track,
         });
 
-        console.log("학교 인증 상태: ", response.data.verification_status.school_status);
-        setSchoolVerified(response.data.verification_status.school_status);
+        console.log(
+          "학교 인증 상태: ",
+          response.data.verification_status.school_status
+        );
+        setSchoolVerified(
+          response.data.verification_status.school_status
+        );
       } else {
         console.log("사용자 정보가 존재하지 않습니다.");
       }
@@ -81,7 +86,10 @@ export const MyPage = () => {
         })
         .then((response) => {
           alert("프로필 사진이 변경되었습니다.");
-          setUserInfo((prevState) => ({ ...prevState, profile_image: response.data.profile_image }));
+          setUserInfo((prevState) => ({
+            ...prevState,
+            profile_image: response.data.profile_image,
+          }));
         })
         .catch((error) => {
           console.error("프로필 사진 변경 오류:", error);
@@ -107,7 +115,10 @@ export const MyPage = () => {
 
   // 학교 인증 요청 함수
   const submitSchoolVerification = async () => {
-    if (schoolVerified === "pending" || schoolVerified === "approved") {
+    if (
+      schoolVerified === "pending" ||
+      schoolVerified === "approved"
+    ) {
       alert("이미 학교 인증 요청이 처리 중이거나 완료되었습니다.");
       return;
     }
@@ -131,12 +142,16 @@ export const MyPage = () => {
 
     try {
       // Axios POST 요청 보내기
-      const response = await axiosInstance.post("/mypage/verification/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // FormData를 전송할 때 multipart/form-data 설정
-        },
-        withCredentials: true, // 쿠키를 포함하여 요청을 보낼 경우
-      });
+      const response = await axiosInstance.post(
+        "/mypage/verification/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // FormData를 전송할 때 multipart/form-data 설정
+          },
+          withCredentials: true, // 쿠키를 포함하여 요청을 보낼 경우
+        }
+      );
 
       alert("학교 인증이 제출되었습니다.");
       setSchoolVerified("pending");
@@ -219,9 +234,14 @@ export const MyPage = () => {
           <S.Mid>
             <S.Name>{userInfo.name}</S.Name>
             <S.Badge>
-              {userInfo.membership_term}기 {userInfo.track && userInfo.track}
+              {userInfo.membership_term}기{" "}
+              {userInfo.track && userInfo.track}
             </S.Badge>
-            {userInfo.is_staff !== "none" && <S.Badge>{userInfo.is_staff === true ? "운영진" : "아기사자"}</S.Badge>}
+            {userInfo.is_staff !== "none" && (
+              <S.Badge>
+                {userInfo.is_staff === true ? "운영진" : "아기사자"}
+              </S.Badge>
+            )}
             {/* {userInfo.track && <S.Track>{userInfo.track}</S.Track>} */}
           </S.Mid>
           <S.Bottom>{userInfo.email}</S.Bottom>
@@ -234,18 +254,33 @@ export const MyPage = () => {
         /> */}
         <S.Img
           // 절대 경로와 캐시 무효화 적용
-          src={userInfo.profile_image ? `http://everion.store${userInfo.profile_image}?timestamp=${new Date().getTime()}` : defaultProfile}
+          src={
+            userInfo.profile_image
+              ? `http://everion.store${
+                  userInfo.profile_image
+                }?timestamp=${new Date().getTime()}`
+              : defaultProfile
+          }
           alt="profile img"
           onClick={() => profileInputRef.current.click()}
           style={{ cursor: "pointer" }}
         />
-        <input type="file" ref={profileInputRef} style={{ display: "none" }} onChange={handleProfileChange} />
+        <input
+          type="file"
+          ref={profileInputRef}
+          style={{ display: "none" }}
+          onChange={handleProfileChange}
+        />
       </S.Info>
       <S.School>
         {schoolVerified === "approved" ? (
           <S.SchoolName>
             내 학교
-            <S.SchoolBadge>{userInfo.school_name ? userInfo.school_name : "학교 없음"}</S.SchoolBadge>
+            <S.SchoolBadge>
+              {userInfo.school_name
+                ? userInfo.school_name
+                : "학교 없음"}
+            </S.SchoolBadge>
           </S.SchoolName>
         ) : schoolVerified === "pending" ? (
           <S.SchoolVerify>
@@ -263,8 +298,15 @@ export const MyPage = () => {
                 <img src={upload} alt="upload icon" />
               </S.UploadIcon>
             </S.Guide>
-            <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} />
-            <button onClick={submitSchoolVerification}>제출하기</button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+            <button onClick={submitSchoolVerification}>
+              제출하기
+            </button>
           </S.SchoolVerify>
         )}
       </S.School>
