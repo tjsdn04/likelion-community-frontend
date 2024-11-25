@@ -1,5 +1,3 @@
-// DefaultPostPage.js
-
 import * as S from "./PostPage.styled";
 import { Header } from "@components/Header";
 import { Content } from "@components/post/Content";

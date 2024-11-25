@@ -30,12 +30,12 @@ export const MyPostPage = () => {
       const response = await axiosInstance.get("/mypage/myposts/");
       console.log("post Response", response.data);
 
-      const { mainscrap, schoolscrap, questionscrap } = response.data;
+      const { mainpost, schoolpost, questionpost } = response.data;
       // 세 배열을 합쳐 하나의 배열로 상태에 저장
       const combinedPosts = [
-        ...(Array.isArray(mainscrap) ? mainscrap : []),
-        ...(Array.isArray(schoolscrap) ? schoolscrap : []),
-        ...(Array.isArray(questionscrap) ? questionscrap : []),
+        ...(Array.isArray(mainpost) ? mainpost : []),
+        ...(Array.isArray(schoolpost) ? schoolpost : []),
+        ...(Array.isArray(questionpost) ? questionpost : []),
       ];
 
       setMyPostData(combinedPosts);
