@@ -30,12 +30,14 @@ export const MyCommentPage = () => {
       const response = await axiosInstance.get("/mypage/mycomments/");
       console.log("post Response", response.data);
 
-      const { mainscrap, schoolscrap, questionscrap } = response.data;
+      const { maincomment, schoolcomment, questioncomment } = response.data;
+      console.log("데이터는", response.data);
+
       // 세 배열을 합쳐 하나의 배열로 상태에 저장
       const combinedPosts = [
-        ...(Array.isArray(mainscrap) ? mainscrap : []),
-        ...(Array.isArray(schoolscrap) ? schoolscrap : []),
-        ...(Array.isArray(questionscrap) ? questionscrap : []),
+        ...(Array.isArray(maincomment) ? maincomment : []),
+        ...(Array.isArray(schoolcomment) ? schoolcomment : []),
+        ...(Array.isArray(questioncomment) ? questioncomment : []),
       ];
 
       setMyCommentData(combinedPosts);
@@ -53,40 +55,28 @@ export const MyCommentPage = () => {
     <S.Wrapper>
       <Header title="댓글 쓴 글" />
       <S.Posts>
-        {/* {MyPostData.map((post) => (
-                    <MyPagePost 
-                        key={index}
-                        board_title={post.board_title}
-                        title={post.title}
-                        content={post.content}
-                        image_url={post.image_url}
-                        comments_count={post.comments_count}
-                        time={post.time}
-                        writer={post.writer}
-                    />
-                ))} */}
-        {MyCommentData.map((post) => {
-          const boardPath = boardPaths[post.board_title] || "/unknownboard"; // 기본값 설정
+        {MyCommentData.map((comment) => {
+          const boardPath = boardPaths[comment.board.board_title] || "/unknownboard"; // 기본값 설정
 
           return (
             <Link
-              to={`${boardPath}/${post.id}`} // 동적으로 게시판 경로 설정
-              key={post.id}
+              to={`${boardPath}/${comment.id}`} // 동적으로 게시판 경로 설정
+              key={comment.id}
               style={{
                 width: "100%",
                 color: "#323232",
               }}
             >
               <MyPagePost
-                id={post.id}
-                board_title={post.board_title}
-                title={post.title}
-                body={post.body}
-                images={post.images}
-                comments_count={post.comments_count}
-                time={post.time}
-                anonymous={post.anonymous}
-                writer={post.writer?.name}
+                id={comment.id}
+                board_title={comment.board.board_title}
+                title={comment.board.title}
+                body={comment.board.body}
+                images={comment.board.images}
+                comments_count={comment.board.comments_count}
+                time={comment.time}
+                anonymous={comment.anonymous}
+                writer={comment.writer?.name}
               />
             </Link>
           );
