@@ -16,10 +16,18 @@ export const MainHeader = ({ title }) => {
     const fetchUserInfo = async () => {
       try {
         const response = await axiosInstance.get("/mypage/");
-        const userProfileImage = response.data.user_info.profile_image;
-        setProfileImage(userProfileImage ? `http://everion.store${userProfileImage}` : defaultProfile);
+        const userProfileImage =
+          response.data.user_info.profile_image;
+        setProfileImage(
+          userProfileImage
+            ? `http://everion.store${userProfileImage}`
+            : defaultProfile
+        );
       } catch (error) {
-        console.error("사용자 정보를 불러오는 중 오류가 발생했습니다:", error);
+        console.error(
+          "사용자 정보를 불러오는 중 오류가 발생했습니다:",
+          error
+        );
       }
     };
     fetchUserInfo();
@@ -35,7 +43,10 @@ export const MainHeader = ({ title }) => {
         <Right>
           <Link to="/myPage">
             {/* <Profile src="" alt=" profile img" /> */}
-            <Profile src={profileImage || defaultProfile} alt="profile img" />
+            <Profile
+              src={profileImage || defaultProfile}
+              alt="profile img"
+            />
           </Link>
         </Right>
       </Content>
@@ -66,7 +77,8 @@ const Content = styled.div`
 
 const Title = styled.div`
   color: #ff7710;
-  font-family: ${({ theme }) => theme.fonts.PretendardExtraBold["font-family"]};
+  font-family: ${({ theme }) =>
+    theme.fonts.PretendardExtraBold["font-family"]};
 `;
 
 const Left = styled.div`
@@ -95,7 +107,8 @@ const Right = styled.div`
 
 const Profile = styled.img`
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  /* border: 1px solid black; */
+  width: 30px;
+  height: 30px;
   object-fit: cover;
 `;
