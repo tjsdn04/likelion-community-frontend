@@ -6,7 +6,7 @@ import { BoardInfo as BoardInfoComponent } from "./BoardInfo";
 
 export const Board = ({ id, title, body, time, anonymous, writer, comments_count, scraps_count, images }) => {
   const image = images && images.length > 0 ? images[0].image : null;
-
+  
   return (
     <S.Wrapper>
       <S.Left>

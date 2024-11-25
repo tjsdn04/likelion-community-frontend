@@ -34,14 +34,9 @@ export const DefaultPostPage = () => {
       const response = await axiosInstance.get(`/post/maincomment/?board_id=${postId}`);
       console.log("comments response:", response.data);
       const data = response.data.results || response.data;
-
-      const commentsArray = Array.isArray(data)
-        ? data.filter(comment => Number(comment.board) === postId)
-        : data && Number(data.board) === postId
-        ? [data]
-        : [];
-
+      const commentsArray = Array.isArray(data) ? data : [data];
       setComments(commentsArray);
+
     } catch (error) {
       console.log("error:", error);
       setError("댓글을 불러오는 데 실패했습니다.");

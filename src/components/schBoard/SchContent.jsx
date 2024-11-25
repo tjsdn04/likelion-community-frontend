@@ -17,7 +17,8 @@ export const SchContent = ({
   time, 
   writer, 
   anonymous, 
-  username
+  username,
+  boardTitle
 }) => {
   
   useFetchCsrfToken();
@@ -87,6 +88,19 @@ const user = anonymous ? '익명' : writer;
 
   const isAuthor = myUsername === username;
 
+  // 게시글 수정
+  const postUpdate = () => {
+
+    const postUpdateUrl = {
+      "전체게시판": "/schDefaultPostingPage",
+      "질문게시판": "/qnaPostingPage",
+    }
+    const url = postUpdateUrl[boardTitle];
+    navigate(url, {
+      state:{id, title, body, images, boardTitle}
+    })
+  }
+
   return (
     <S.PostWrap>
       <S.User>
@@ -99,7 +113,7 @@ const user = anonymous ? '익명' : writer;
         </S.Writter>
         {isAuthor && (
         <S.ModifyWrap>
-          <S.Modify>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
+          <S.Modify onClick={postUpdate}>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
         </S.ModifyWrap>          
         )}
       </S.User>

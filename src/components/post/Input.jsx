@@ -5,11 +5,20 @@ import comment from "@assets/icons/comment.svg";
 import { useState } from "react";
 import axiosInstance from "@apis/axiosInstance";
 
-export const Input = ({ postId, onAddComment }) => {
+export const Input = ({ postId, onAddComment, boardTitle }) => {
 
   const [content, setContent] = useState("");
   const [anonymous, setAnonymous] = useState(false);
   const [submit, setSubmit] = useState(false);
+
+  const getPostUrl = () => {
+    if (boardTitle === "전체게시판") {
+      return "/post/schoolcomment/";
+    } else if (boardTitle === "질문게시판") {
+      return "/post/questionboard/";
+    }
+    return "/post/maincomment/";
+  };
 
   const handleSubmit = async () => {
     if (!content.trim()) {
@@ -25,9 +34,9 @@ export const Input = ({ postId, onAddComment }) => {
         board: postId,
       };
 
-
+      const postUrl=getPostUrl();
       const response = await axiosInstance.post(
-        "/post/maincomment/",
+        postUrl,
         requestBody,
         {
           headers: {

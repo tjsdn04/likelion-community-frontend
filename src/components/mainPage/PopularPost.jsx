@@ -27,7 +27,7 @@ export const PopularPost = ({id, board_title, body}) => {
                 return "🚥 기획/디자인 게시판";
             case "아기사자게시판":
                 return "🦁 아기사자게시판";
-            case "이벤트/공지 게시판":
+            case "이벤트/공지게시판":
                 return "📢 이벤트/공지게시판";
             case "참여게시판":
                 return "✋ 참여게시판";

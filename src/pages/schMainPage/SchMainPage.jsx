@@ -96,7 +96,7 @@ export const SchMainPage = () => {
         />
       </S.Boards>
       <Footer />
-      {/* {verification !== "approved" && <Back />} */}
+      {verification !== "approved" && <Back />}
     </S.Wrapper>
   );
 };

@@ -76,7 +76,7 @@ export const DefaultPostingPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="자유 게시판" />
+      <Header title="자유게시판" />
       <S.ContentWrapper>
         <S.ContentWrap>
           <PostingBox post={post} setPost={setPost} onSubmit={handlePostSubmit} />
