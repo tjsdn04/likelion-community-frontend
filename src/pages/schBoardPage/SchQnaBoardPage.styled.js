@@ -16,4 +16,5 @@ export const Content = styled.div`
     gap: 9px;
     margin-top: 7.25vh;
     margin-bottom: 9px;
+    width: 100%;
 `

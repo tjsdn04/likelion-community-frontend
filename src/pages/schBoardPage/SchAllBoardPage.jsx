@@ -32,21 +32,26 @@ export const SchAllBoardPage = () => {
             <Header title='전체 게시판' />
             <S.Noti>📢  중앙해커톤 12/6일 개최! </S.Noti>
             <S.Content>
-              {posts.map((post, index) => (
-                <Link to={`/schDefaultPostPage/${post.id}`} style={{ width: "100%" }}>
+              {posts.map((post) => (
+                <Link to={`/schDefaultPostPage/${post.id}`} style={{ width: "100%" }} key={post.id}>
                   <SchBoard 
-                    key={index}
                     title={post.title}
                     body={post.body}
+                    time={post.time}
+                    anonymous={post.anonymous}
+                    writer={post.writer.nickname}
+                    comments_count={post.comments_count}
+                    scraps_count={post.scraps_count}
+                    images={post.image}
                   />
                 </Link>
               ))}
             </S.Content>
-            <Link to='/'>
+            <Link to='/schDefaultPostingPage'>
                 <WriteBtn />
             </Link>
         </S.Wrapper>
     )
 }
 
-export default SchAllBoardPage
+export default SchAllBoardPage;

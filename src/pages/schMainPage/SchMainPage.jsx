@@ -33,18 +33,40 @@ export const SchMainPage = () => {
   }, []);
   console.log("운영진이니?:", isStaff);
 
-  // 예시 데이터
-  const posts1 = [
-    { time: "6", user: "익명", content: "내용입니다내용입니다" },
-    { time: "7", user: "익명2", content: "내용입니다2" },
-    { time: "7", user: "익명2", content: "내용입니다2" },
-  ];
+  // 전체 게시판 최근글 3개
+  const [defaultPosts, setDefaultPosts] = useState([]);
 
-  const posts2 = [
-    { time: "7", user: "익명2", content: "내용입니다2" },
-    { time: "8", user: "익명3", content: "내용입니다3" },
-    { time: "9", user: "익명3", content: "내용입니다4" },
-  ];
+  const fetchDefaultPosts = async () => {
+    try{
+        const response = await axiosInstance.get('/post/latest-school-board/');
+        console.log('전체 게시판 최근글 3개 :', response.data);
+        setDefaultPosts(Array.isArray(response.data) ? response.data : [response.data]);
+    } catch(error) {
+        console.log('error:',error)
+    }
+  }
+
+  useEffect(() => {
+    fetchDefaultPosts();
+  }, [])
+
+  // 질문 게시판 최근글 3개
+  const [qnaPosts, setqnaPosts] = useState([]);
+
+  const fetchQnaPosts = async () => {
+    try{
+        const response = await axiosInstance.get('/post/latest-question-board/');
+        console.log('질문 게시판 최근글 3개 :', response.data);
+        setqnaPosts(Array.isArray(response.data) ? response.data : [response.data]);
+    } catch(error) {
+        console.log('error:',error)
+    }
+  }
+
+  useEffect(() => {
+    fetchQnaPosts();
+  }, [])
+
 
   return (
     <S.Wrapper>
@@ -62,14 +84,14 @@ export const SchMainPage = () => {
         </S.Button>
       </S.Buttons>
       <S.Boards>
-        <Board
+          <Board
           title="전체게시판"
-          posts={posts1}
+          posts={defaultPosts}
           link="/schAllBoard"
         />
         <Board
           title="질문게시판"
-          posts={posts2}
+          posts={qnaPosts}
           link="/schQnaBoard"
         />
       </S.Boards>
