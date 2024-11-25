@@ -55,6 +55,17 @@ export const ChatPage = () => {
   }, [chatroom_id]);
 
   useEffect(() => {
+    const scrollToBottom = () => {
+      if (chatRef.current) {
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      }
+    };
+
+    // 데이터 로드 후 약간의 딜레이로 스크롤 이동 보장
+    setTimeout(scrollToBottom, 50);
+  }, [messages, chatroom_id]); // 메시지나 방 ID 변경 시 스크롤 이동
+
+  useEffect(() => {
     if (!roomName || !currentUser.id) return;
 
     let retryInterval = 1000;
