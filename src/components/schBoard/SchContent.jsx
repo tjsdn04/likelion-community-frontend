@@ -53,7 +53,11 @@ const user = anonymous ? '익명' : writer;
   // 게시글 삭제
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/post/schoolboard/${id}/`);
+      const deleteUrl = boardTitle 
+        === "전체게시판" ? `/post/schoolboard/${id}/` 
+        :`/post/questionboard/${id}/`;
+
+      await axiosInstance.delete(deleteUrl);
       console.log('게시글이 성공적으로 삭제되었습니다')
       navigate(-1);
     } catch(error) {

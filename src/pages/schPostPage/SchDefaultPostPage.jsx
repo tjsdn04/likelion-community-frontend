@@ -78,7 +78,7 @@ export const SchDefaultPostPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="전체 게시판" />
+      <Header title="전체게시판" />
       <SchContent
         id={post.id}
         title={post.title}

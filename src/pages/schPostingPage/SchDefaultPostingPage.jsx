@@ -79,7 +79,7 @@ export const SchDefaultPostingPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="자유게시판" />
+      <Header title="전체게시판" />
       <S.ContentWrapper>
         <S.ContentWrap>
           <PostingBox post={post} setPost={setPost} onSubmit={handlePostSubmit} />

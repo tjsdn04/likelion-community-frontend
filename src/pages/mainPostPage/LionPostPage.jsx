@@ -14,6 +14,7 @@ export const LionPostPage = () => {
   const postId = Number(id);
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
+  const boardTitle = "아기사자게시판"
 
 
   // 게시물 가져오기
@@ -94,7 +95,7 @@ export const LionPostPage = () => {
           <Comments key={comment.id} comment={comment} />
         ))}
       </S.CommentWrap>
-      <Input postId={post.id} onAddComment={handleAddComment} />
+      <Input postId={post.id} onAddComment={handleAddComment} boardTitle={boardTitle}/>
     </S.Wrapper>
   );
 };
