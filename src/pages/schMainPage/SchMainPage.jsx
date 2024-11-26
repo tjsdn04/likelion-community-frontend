@@ -18,12 +18,15 @@ export const SchMainPage = () => {
 
   const { goTo } = useCustomNavigate();
   const [isStaff, setIsStaff] = useState(false); //운영진유무 상태관리
+  const [schoolName, setSchoolName]=useState("");
+
   // API 호출 및 is_staff 값 가져오기
   useEffect(() => {
     const fetchIsStaff = async () => {
       try {
         const response = await axiosInstance.get("/attendance/main/");
         setIsStaff(response.data.user_info.is_staff);
+        setSchoolName(response.data.user_info.school_name);
       } catch (error) {
         console.error("Error fetching is_staff:", error);
       }
@@ -70,7 +73,7 @@ export const SchMainPage = () => {
 
   return (
     <S.Wrapper>
-      <MainHeader title="멋사대학교" />
+      <MainHeader title={schoolName} />
       <S.Buttons>
         <S.Button
           onClick={() => goTo(isStaff ? "/adminAtt" : "/lionAtt")}
@@ -78,13 +81,13 @@ export const SchMainPage = () => {
           <img src={attendance} alt="attendance" />
           <S.Title>출석</S.Title>
         </S.Button>
-        <S.Button>
+        <S.Button onClick={() => goTo('/schNotiBoard')}>
           <img src={notice} alt="notice" />
           <S.Title>공지사항</S.Title>
         </S.Button>
       </S.Buttons>
       <S.Boards>
-          <Board
+        <Board
           title="전체게시판"
           posts={defaultPosts}
           link="/schAllBoard"
