@@ -53,9 +53,15 @@ const user = anonymous ? '익명' : writer;
   // 게시글 삭제
   const handleDelete = async () => {
     try {
-      const deleteUrl = boardTitle 
-        === "전체게시판" ? `/post/schoolboard/${id}/` 
-        :`/post/questionboard/${id}/`;
+      let deleteUrl = "";
+
+      if (boardTitle === "전체게시판") {
+        deleteUrl = `/post/schoolboard/${id}/`;
+      } else if (boardTitle === "질문게시판") {
+        deleteUrl = `/post/questionboard/${id}/`;
+      } else if (boardTitle === "공지사항") {
+        deleteUrl = `/post/schoolnoticeboard/${id}/`;
+      }
 
       await axiosInstance.delete(deleteUrl);
       console.log('게시글이 성공적으로 삭제되었습니다')
@@ -98,6 +104,7 @@ const user = anonymous ? '익명' : writer;
     const postUpdateUrl = {
       "전체게시판": "/schDefaultPostingPage",
       "질문게시판": "/qnaPostingPage",
+      "공지사항": "/SchNotiPosting",
     }
     const url = postUpdateUrl[boardTitle];
     navigate(url, {

@@ -22,7 +22,7 @@ export const MyCommentPage = () => {
     참여게시판: "/joinPostPage",
     // 학교
     전체게시판: "/schDefaultPostPage",
-    질문게시판: "/qnaPostPage",
+    질문게시판: "/qnaPostPage"
   };
 
   const getMyCommentData = async () => {

@@ -21,6 +21,8 @@ export const Input = ({ postId, onAddComment, boardTitle }) => {
         ? "/post/schoolcomment/"
         : boardTitle === "질문게시판"
         ? "/post/questioncomment/"
+        : boardTitle === "공지사항"
+        ? "/post/schoolnoticecomment/"
         : "/post/maincomment/";
 
       const requestBody = {
