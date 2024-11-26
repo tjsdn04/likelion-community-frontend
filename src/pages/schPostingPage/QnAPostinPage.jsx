@@ -99,7 +99,7 @@ export const QnAPostingPage = () => {
 
   return (
     <S.Wrapper>
-      <Header title="질문 게시판" />
+      <Header title="질문게시판" />
       <S.ContentWrapper>
         <S.ContentWrap>
           <Track>

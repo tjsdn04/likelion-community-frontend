@@ -14,7 +14,7 @@ export const BePostPage = () => {
   const postId = Number(id);
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
-
+  const boardTitle = "기획/디자인 게시판"
 
   // 게시물 가져오기
   const fetchPost = async () => {
@@ -94,7 +94,7 @@ export const BePostPage = () => {
           <Comments key={comment.id} comment={comment} />
         ))}
       </S.CommentWrap>
-      <Input postId={post.id} onAddComment={handleAddComment} />
+      <Input postId={post.id} onAddComment={handleAddComment} boardTitle={boardTitle}/>
     </S.Wrapper>
   );
 };

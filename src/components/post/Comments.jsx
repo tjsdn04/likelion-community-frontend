@@ -3,9 +3,12 @@ import * as S from "./Content.styled";
 import styled from "styled-components";
 import profileLion from "@assets/icons/profileLion.svg";
 export const Comments = ({ comment }) => {
-  const { anonymous, content, time, writer } = comment;
-  // 작성자 이름 결정
-  const name = anonymous ? "익명" : writer.nickname || "익명";
+  const { anonymous, content, time, writer, anonymous_number } = comment;
+  
+  const name = anonymous
+    ? `익명 ${anonymous_number || ""}` // 익명 번호 추가
+    : writer.nickname || "익명";
+
   // 시간 포맷팅
   const date = new Date(time).toLocaleString("ko-KR", {
     year: "numeric",
@@ -19,7 +22,7 @@ export const Comments = ({ comment }) => {
       <S.Writter>
         <S.ProfileImg src={profileLion}></S.ProfileImg>
         <S.Text>
-          <p>{name}</p>
+          <p>{name}</p> 
           <p>{date}</p>
         </S.Text>
       </S.Writter>
