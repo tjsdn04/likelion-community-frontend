@@ -20,13 +20,41 @@ export const WelcomePage = () => {
     };
   }, []);
 
-  const handleKakaoLogin = () => {
-    // 백엔드의 카카오 로그인 URL로 직접 이동
-    window.location.href = `${
-      import.meta.env.VITE_BASE_URL
-    }/signup/login/kakao/`;
+  const handleKakaoLogin = async () => {
+    try {
+      const response = await axiosInstance.get("/signup/login/home/");
+      if (response.data.is_authenticated) {
+        goTo(response.data.redirect_url || "/main");
+      } else {
+        window.location.href = `${
+          import.meta.env.VITE_BASE_URL
+        }/signup/login/kakao/`;
+      }
+    } catch (error) {
+      console.error("로그인 상태 확인 중 오류:", error);
+      window.location.href = `${
+        import.meta.env.VITE_BASE_URL
+      }/signup/login/kakao/`;
+    }
   };
-
+  
+  const handleNormalLogin = async () => {
+    try {
+      // 로그인 상태 확인 API 호출
+      const response = await axiosInstance.get("/signup/login/home/");
+      if (response.data.is_authenticated) {
+        // 이미 로그인된 상태라면 메인 페이지로 이동
+        goTo("/main");
+      } else {
+        // 로그인되지 않은 상태라면 로그인 페이지로 이동
+        goTo("/login");
+      }
+    } catch (error) {
+      console.error("로그인 상태 확인 중 오류:", error);
+      // 에러 발생 시 로그인 페이지로 이동
+      goTo("/login");
+    }
+  };
   return (
     <S.Wrapper>
       <S.Content>
@@ -39,7 +67,6 @@ export const WelcomePage = () => {
         </S.LogoWrapper>
         <S.BtnWrapper>
           <S.Btn onClick={handleKakaoLogin}>
-            {/* onClick={() => goTo("/adminAtt")}테스트 용으로연결해둠 */}
             <img
               src={kakao}
               alt="kakao Logo"
@@ -48,7 +75,7 @@ export const WelcomePage = () => {
             <span className="kakao">카카오 로그인</span>
           </S.Btn>
           <S.Btn
-            onClick={() => goTo("/login")}
+            onClick={handleNormalLogin}
             color="rgba(255, 255, 255, 0.80)"
           >
             로그인

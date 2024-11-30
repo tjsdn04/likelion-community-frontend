@@ -25,6 +25,8 @@ export const Content = ({ id, title, body, images, likes_count, scraps_count, ti
   const elapseTime = getTime(time);
 
   const user = anonymous ? "익명" : writer;
+
+  const user = anonymous ? "익명" : writer;
   const [liked, setLiked] = useState(false);
   const [scrapped, setScrapped] = useState(false);
 
@@ -160,7 +162,6 @@ export const Content = ({ id, title, body, images, likes_count, scraps_count, ti
       <S.Button>
         <S.Like onClick={handleLike} liked={liked}>
           추천 <span>{liked ? likes_count + 1 : likes_count}</span>
-          {/* */}
         </S.Like>
         <S.Scrap onClick={handleScrap} scrapped={scrapped}>
           {scrapped ? "스크랩 취소 " : "스크랩 "}

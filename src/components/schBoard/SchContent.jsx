@@ -17,7 +17,8 @@ export const SchContent = ({
   time, 
   writer, 
   anonymous, 
-  username
+  username,
+  boardTitle
 }) => {
   
   useFetchCsrfToken();
@@ -52,7 +53,17 @@ const user = anonymous ? '익명' : writer;
   // 게시글 삭제
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/post/schoolboard/${id}/`);
+      let deleteUrl = "";
+
+      if (boardTitle === "전체게시판") {
+        deleteUrl = `/post/schoolboard/${id}/`;
+      } else if (boardTitle === "질문게시판") {
+        deleteUrl = `/post/questionboard/${id}/`;
+      } else if (boardTitle === "공지사항") {
+        deleteUrl = `/post/schoolnoticeboard/${id}/`;
+      }
+
+      await axiosInstance.delete(deleteUrl);
       console.log('게시글이 성공적으로 삭제되었습니다')
       navigate(-1);
     } catch(error) {
@@ -87,6 +98,20 @@ const user = anonymous ? '익명' : writer;
 
   const isAuthor = myUsername === username;
 
+  // 게시글 수정
+  const postUpdate = () => {
+
+    const postUpdateUrl = {
+      "전체게시판": "/schDefaultPostingPage",
+      "질문게시판": "/qnaPostingPage",
+      "공지사항": "/SchNotiPosting",
+    }
+    const url = postUpdateUrl[boardTitle];
+    navigate(url, {
+      state:{id, title, body, images, boardTitle}
+    })
+  }
+
   return (
     <S.PostWrap>
       <S.User>
@@ -99,7 +124,7 @@ const user = anonymous ? '익명' : writer;
         </S.Writter>
         {isAuthor && (
         <S.ModifyWrap>
-          <S.Modify>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
+          <S.Modify onClick={postUpdate}>수정 </S.Modify>|<S.Delete onClick={handleDelete}> 삭제</S.Delete>
         </S.ModifyWrap>          
         )}
       </S.User>

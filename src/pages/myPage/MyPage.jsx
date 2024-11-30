@@ -78,7 +78,10 @@ export const MyPage = () => {
         })
         .then((response) => {
           alert("프로필 사진이 변경되었습니다.");
-          setUserInfo((prevState) => ({ ...prevState, profile_image: response.data.profile_image }));
+          setUserInfo((prevState) => ({
+            ...prevState,
+            profile_image: response.data.profile_image,
+          }));
         })
         .catch((error) => {
           console.error("프로필 사진 변경 오류:", error);
@@ -188,40 +191,6 @@ export const MyPage = () => {
         alert("파일 업로드 중 오류가 발생했습니다.");
       });
   };
-
-  {
-    /* 
-  // 학교 인증 요청 함수
-  const submitSchoolVerification = async () => {
-    console.log("학교 인증 요청 함수 실행"); // 디버깅용
-
-    if (!verificationPhoto) {
-      alert("인증할 사진을 선택해주세요.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("verification_photo", verificationPhoto);
-
-    // 학교 인증사진 들어가는지
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value); // 키와 해당 값을 출력
-    }
-    try {
-      const response = await axiosInstance.post("/mypage/schoolverification/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      alert("학교 인증이 제출되었습니다.");
-      setSchoolVerified("pending");
-    } catch (e) {
-      console.error("학교 인증 오류:", e);
-      alert("학교 인증 중 오류가 발생했습니다.");
-    }
-  };
-*/
-  }
 
   // 로그아웃 함수
   const handleLogout = async () => {
