@@ -161,16 +161,16 @@ export const MyPage = () => {
 
   // 서버로 파일 업로드
   const handleFileUpload = (e) => {
-    const file = e.target.files[0]; // 선택된 파일
+    const files = e.target.files; // 선택된 파일들
 
-    if (!file) {
+    if (!files.length) {
       alert("파일을 선택해주세요.");
       return;
     }
 
     // FormData 생성
     const formData = new FormData();
-    formData.append("file", file);
+    Array.from(files).forEach((file) => formData.append("photos", file)); // 필드 이름 'photos'
 
     // 서버에 파일 업로드 요청
     axiosInstance
